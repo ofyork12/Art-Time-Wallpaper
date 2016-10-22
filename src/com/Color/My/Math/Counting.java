@@ -49,6 +49,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 import android.content.res.AssetManager;
 import android.hardware.SensorManager;
+import android.util.Log;
 import android.view.MotionEvent;
 
 
@@ -150,19 +151,14 @@ public class Counting extends BaseLiveWallpaperService  implements IAcceleration
 	
 	@Override
 	public EngineOptions onCreateEngineOptions() {
-		// TODO Auto-generated method stub
 		return new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, 
 				new FillResolutionPolicy(), new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT));
 	}
-	/*
+	
 	@Override
-	public org.andengine.engine.Engine onLoadEngine() {
-		
-		return new org.andengine.engine.FixedStepEngine(
-				new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, 
-						new FillResolutionPolicy(), new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT)), 59);
-		  }
-	*/
+	public org.andengine.engine.Engine onCreateEngine(final EngineOptions pEngineOptions) {
+		return new org.andengine.engine.FixedStepEngine(pEngineOptions, 2);
+	}
 	
 	@Override
 	public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
