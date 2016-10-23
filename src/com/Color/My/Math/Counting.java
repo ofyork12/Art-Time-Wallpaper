@@ -157,7 +157,7 @@ public class Counting extends BaseLiveWallpaperService  implements IAcceleration
 	
 	@Override
 	public org.andengine.engine.Engine onCreateEngine(final EngineOptions pEngineOptions) {
-		return new org.andengine.engine.FixedStepEngine(pEngineOptions, 2);
+		return new org.andengine.engine.FixedStepEngine(pEngineOptions, 10);
 	}
 	
 	@Override
@@ -763,9 +763,7 @@ public class Counting extends BaseLiveWallpaperService  implements IAcceleration
 		private void clearEntities(final Sprite face1r) {
 			face1r.clearUpdateHandlers();
 			// TODO: see if we fixed this above 
-			// face1r.setUpdatePhysics(false);
-			//waiting(25);
-			//face1r.setUpdatePhysics(false);
+			face1r.setIgnoreUpdate(true);
 			final Scene mScene = this.mEngine.getScene();
 			final PhysicsConnector facePhysicsConnector = this.mPhysicsWorld.getPhysicsConnectorManager().findPhysicsConnectorByShape(face1r);
 		
@@ -999,7 +997,7 @@ void add_8_min(){
 	{
 		nPC9s[i] = new Sprite( npx9s[i], npy9s[i] , this.mCircle_8_min_TextureRegion8, mEngine.getVertexBufferObjectManager());
 		body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-		// TODO: nPC9s[i].setUpdatePhysics(false);
+		nPC9s[i].setIgnoreUpdate(true);
 		mScene.attachChild(nPC9s[i]);
 		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
 		}
@@ -1007,7 +1005,7 @@ void add_8_min(){
 	{
 		nPC9s[i] = new Sprite( npx9s[i], npy9s[i] , this.mCircle_8_min_TextureRegion8, mEngine.getVertexBufferObjectManager());
 		body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-		// TODO: nPC9s[i].setUpdatePhysics(false);
+		nPC9s[i].setIgnoreUpdate(true);
 		mScene.attachChild(nPC9s[i]);
 		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
 		}
@@ -1018,7 +1016,7 @@ void add_9_min(){
 	{
 		nPC9s[i] = new Sprite( npx9s[i], npy9s[i] , this.mCircle_9_min_TextureRegion9, mEngine.getVertexBufferObjectManager());
 		body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-		// TODO: nPC9s[i].setUpdatePhysics(false);
+		nPC9s[i].setIgnoreUpdate(true);
 		mScene.attachChild(nPC9s[i]);
 		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
 	}
@@ -1188,7 +1186,7 @@ void add_50_min(){
 		{
 			nPC30sHour[i] = new Sprite( npx30sHour[i] + 4, npy30sHour[i] , this.mCircleTextureRegion_7_Hour, mEngine.getVertexBufferObjectManager());
 			body = createHexagonBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			// TODO: nPC30sHour[i].setUpdatePhysics(false);
+			nPC30sHour[i].setIgnoreUpdate(true);
 			mScene.attachChild(nPC30sHour[i]);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, true));
 			}
@@ -1200,7 +1198,7 @@ void add_50_min(){
 			{
 			nPC30sHour[i] = new Sprite( npx30sHour[i], npy30sHour[i] , this.mCircleTextureRegion_8_Hour, mEngine.getVertexBufferObjectManager());
 			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			// nPC30sHour[i].setUpdatePhysics(false);
+			nPC30sHour[i].setIgnoreUpdate(true);
 			mScene.attachChild(nPC30sHour[i]);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, true));
 			}
@@ -1211,7 +1209,7 @@ void add_50_min(){
 			nPC30sHour[i] = new Sprite( npx30sHour[i] , npy30sHour[i], mCircleTextureRegion_9_Hour, mEngine.getVertexBufferObjectManager());//npx30sHour[i], npy30sHour[i] , mCircle_9_min_TextureRegion
 			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
 			//nPC30sHour[i].animate(1000);
-			// nPC30sHour[i].setUpdatePhysics(false);
+			nPC30sHour[i].setIgnoreUpdate(true);
 			mScene.attachChild(nPC30sHour[i]);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, true));
 		}
