@@ -308,10 +308,6 @@ public class Counting extends BaseLiveWallpaperService
 		pOnCreateSceneCallback.onCreateSceneFinished(mScene);
 	}
 
-	public void onLoadComplete() {
-
-	}
-
 	@Override
 	public boolean onSceneTouchEvent(final Scene pScene, final TouchEvent pSceneTouchEvent) {
 		if (this.mPhysicsWorld != null) {
@@ -332,10 +328,13 @@ public class Counting extends BaseLiveWallpaperService
 
 	@Override
 	public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) {
-		// TODO Auto-generated method stub
-
 		resetTime();
 		pOnPopulateSceneCallback.onPopulateSceneFinished();
+	}
+
+	@Override
+	public void onAccelerationChanged(final AccelerationData pAccelerometerData) {
+		this.mPhysicsWorld.setGravity(new Vector2(pAccelerometerData.getX() * -1, pAccelerometerData.getY()));
 	}
 
 	@Override
@@ -367,21 +366,14 @@ public class Counting extends BaseLiveWallpaperService
 	@Override
 	public boolean onMenuItemClicked(MenuScene pMenuScene, IMenuItem pMenuItem, float pMenuItemLocalX,
 			float pMenuItemLocalY) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean onAreaTouched(TouchEvent pSceneTouchEvent, ITouchArea pTouchArea, float pTouchAreaLocalX,
 			float pTouchAreaLocalY) {
-		// TODO Auto-generated method stub
 		return false;
 	} // ===========================================================
-
-	@Override
-	public void onAccelerationChanged(final AccelerationData pAccelerometerData) {
-		this.mPhysicsWorld.setGravity(new Vector2(pAccelerometerData.getX() * -1, pAccelerometerData.getY()));
-	}
 
 	public static String now(String dateFormat) {
 		Calendar cal = Calendar.getInstance();
