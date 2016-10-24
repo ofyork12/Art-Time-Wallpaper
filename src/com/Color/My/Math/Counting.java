@@ -285,12 +285,6 @@ public class Counting extends BaseLiveWallpaperService
 		PhysicsFactory.createBoxBody(this.mPhysicsWorld, square, BodyType.StaticBody, wallFixtureDef);
 		PhysicsFactory.createBoxBody(this.mPhysicsWorld, square2, BodyType.StaticBody, wallFixtureDef);
 
-		// mScene.getBottomLayer().addEntity(ground);
-		// mScene.getBottomLayer().addEntity(roof);
-		// mScene.getBottomLayer().addEntity(left);
-		// mScene.getBottomLayer().addEntity(right);
-		// mScene.getBottomLayer().addEntity(square);
-		// mScene.getBottomLayer().addEntity(square2);
 		mScene.attachChild(ground);
 		mScene.attachChild(roof);
 		mScene.attachChild(left);
@@ -674,10 +668,7 @@ public class Counting extends BaseLiveWallpaperService
 			add_50_min();
 			add_9_min();
 
-		} else if (this.mFaceMin % 512 == 60) {
-		} else {
 		}
-
 	}
 
 	private void clearEntities(final Sprite face1r) {
@@ -702,7 +693,7 @@ public class Counting extends BaseLiveWallpaperService
 		// mScene.getTopLayer().removeEntity(face1r);
 		// can be replace by this
 		mScene.detachChild(face1r);
-
+		face1r.dispose();
 	}
 
 	private void load_Single_Minutes_Coordinates() {
@@ -803,7 +794,7 @@ public class Counting extends BaseLiveWallpaperService
 			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_1_min_TextureRegion1,
 					mEngine.getVertexBufferObjectManager());
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 
 			mScene.attachChild(nPC9s[i]);
 		}
@@ -814,7 +805,7 @@ public class Counting extends BaseLiveWallpaperService
 			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_2_min_TextureRegion2,
 					mEngine.getVertexBufferObjectManager());
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 
 			mScene.attachChild(nPC9s[i]);
 		}
@@ -825,14 +816,14 @@ public class Counting extends BaseLiveWallpaperService
 			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_3_min_TextureRegion3,
 					mEngine.getVertexBufferObjectManager());
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 		for (int i = 3; i <= 4; i++) {
 			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i] - 3f, this.mCircle_3_min_TextureRegion3,
 					mEngine.getVertexBufferObjectManager());
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 
 			mScene.attachChild(nPC9s[i]);
 		}
@@ -843,14 +834,14 @@ public class Counting extends BaseLiveWallpaperService
 			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_4_min_TextureRegion4,
 					mEngine.getVertexBufferObjectManager());
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 		for (int i = 3; i <= 4; i++) {
 			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_4_min_TextureRegion4,
 					mEngine.getVertexBufferObjectManager());
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 	}
@@ -860,14 +851,14 @@ public class Counting extends BaseLiveWallpaperService
 			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_5_min_TextureRegion5,
 					mEngine.getVertexBufferObjectManager());
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 		for (int i = 3; i <= 5; i++) {
 			nPC9s[i] = new Sprite(npx9s[i], npy9s[i] - 5f, this.mCircle_5_min_TextureRegion5,
 					mEngine.getVertexBufferObjectManager());
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 
@@ -878,21 +869,21 @@ public class Counting extends BaseLiveWallpaperService
 			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_6_min_TextureRegion6,
 					mEngine.getVertexBufferObjectManager());
 			body = createTriangleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 		for (int i = 3; i <= 4; i++) {
 			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_6_min_TextureRegion6,
 					mEngine.getVertexBufferObjectManager());
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 		for (int i = 6; i <= 8; i++) {
 			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_6_min_TextureRegion6,
 					mEngine.getVertexBufferObjectManager());
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 	}
@@ -902,21 +893,21 @@ public class Counting extends BaseLiveWallpaperService
 			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_7_min_TextureRegion7,
 					mEngine.getVertexBufferObjectManager());
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 		for (int i = 3; i <= 5; i++) {
 			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_7_min_TextureRegion7,
 					mEngine.getVertexBufferObjectManager());
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 		for (int i = 6; i <= 7; i++) {
 			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_7_min_TextureRegion7,
 					mEngine.getVertexBufferObjectManager());
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 	}
@@ -928,7 +919,7 @@ public class Counting extends BaseLiveWallpaperService
 			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			nPC9s[i].setIgnoreUpdate(true);
 			mScene.attachChild(nPC9s[i]);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 		}
 		for (int i = 4; i <= 8; i++) {
 			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_8_min_TextureRegion8,
@@ -936,7 +927,7 @@ public class Counting extends BaseLiveWallpaperService
 			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			nPC9s[i].setIgnoreUpdate(true);
 			mScene.attachChild(nPC9s[i]);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 		}
 	}
 
@@ -947,7 +938,7 @@ public class Counting extends BaseLiveWallpaperService
 			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			nPC9s[i].setIgnoreUpdate(true);
 			mScene.attachChild(nPC9s[i]);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 		}
 
 	}
@@ -992,7 +983,7 @@ public class Counting extends BaseLiveWallpaperService
 			nPC10s[i] = new Sprite(npx10s[i], npy10s[i] - 32, this.mTriangleFaceTextureRegion10,
 					mEngine.getVertexBufferObjectManager());
 			body = createTriangleBody(this.mPhysicsWorld, nPC10s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, false));
 			mScene.attachChild(nPC10s[i]);
 		}
 	}
@@ -1002,7 +993,7 @@ public class Counting extends BaseLiveWallpaperService
 			nPC10s[i] = new Sprite(npx10s[i], npy10s[i] + 64, this.mTriangleFaceTextureRegion20,
 					mEngine.getVertexBufferObjectManager());
 			body = createTriangleBody(this.mPhysicsWorld, nPC10s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, false));
 			mScene.attachChild(nPC10s[i]);
 		}
 	}
@@ -1013,7 +1004,7 @@ public class Counting extends BaseLiveWallpaperService
 			nPC10s[i] = new Sprite(npx10s[i] + 56f, npy10s[i], this.mTriangleFaceTextureRegion30,
 					mEngine.getVertexBufferObjectManager());
 			body = createTriangleBody(this.mPhysicsWorld, nPC10s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, false));
 			mScene.attachChild(nPC10s[i]);
 		}
 		for (int i = 3; i <= 3; i++) {
@@ -1021,7 +1012,7 @@ public class Counting extends BaseLiveWallpaperService
 			nPC10s[i] = new Sprite(npx10s[i] + 56f, npy10s[i], this.mTriangleFaceTextureRegion30,
 					mEngine.getVertexBufferObjectManager());
 			body = createTriangleBody(this.mPhysicsWorld, nPC10s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, false));
 			mScene.attachChild(nPC10s[i]);
 		}
 	}
@@ -1032,14 +1023,14 @@ public class Counting extends BaseLiveWallpaperService
 			nPC10s[i] = new Sprite(npx10s[i] + 56f, npy10s[i], this.mTriangleFaceTextureRegion40,
 					mEngine.getVertexBufferObjectManager());
 			body = createTriangleBody(this.mPhysicsWorld, nPC10s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, false));
 			mScene.attachChild(nPC10s[i]);
 		}
 		for (int i = 5; i <= 6; i++) {
 			nPC10s[i] = new Sprite(npx10s[i] + 56f, npy10s[i] - 93f, this.mTriangleFaceTextureRegion40,
 					mEngine.getVertexBufferObjectManager());
 			body = createTriangleBody(this.mPhysicsWorld, nPC10s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, false));
 			mScene.attachChild(nPC10s[i]);
 		}
 	}
@@ -1049,7 +1040,7 @@ public class Counting extends BaseLiveWallpaperService
 			nPC10s[i] = new Sprite(npx10s[i], npy10s[i], this.mTriangleFaceTextureRegion50,
 					mEngine.getVertexBufferObjectManager());
 			body = createTriangleBody(this.mPhysicsWorld, nPC10s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, false));
 			mScene.attachChild(nPC10s[i]);
 		}
 
@@ -1070,7 +1061,7 @@ public class Counting extends BaseLiveWallpaperService
 					mEngine.getVertexBufferObjectManager());
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody,
 					FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 			mScene.attachChild(nPC30sHour[i]);
 		}
 	}
@@ -1081,7 +1072,7 @@ public class Counting extends BaseLiveWallpaperService
 			nPC30sHour[i] = new Sprite(npx30sHour[i] + 24, npy30sHour[i] + 64, this.mCircleTextureRegion_2_Hour,
 					mEngine.getVertexBufferObjectManager());
 			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 			mScene.attachChild(nPC30sHour[i]);
 		}
 	}
@@ -1092,7 +1083,7 @@ public class Counting extends BaseLiveWallpaperService
 			nPC30sHour[i] = new Sprite(npx30sHour[i] + 24, npy30sHour[i] + 42, this.mCircleTextureRegion_3_Hour,
 					mEngine.getVertexBufferObjectManager());
 			body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 			mScene.attachChild(nPC30sHour[i]);
 		}
 	}
@@ -1102,7 +1093,7 @@ public class Counting extends BaseLiveWallpaperService
 			nPC30sHour[i] = new Sprite(npx30sHour[i] + 24, npy30sHour[i] + 16, this.mCircleTextureRegion_4_Hour,
 					mEngine.getVertexBufferObjectManager());
 			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 			mScene.attachChild(nPC30sHour[i]);
 		}
 	}
@@ -1112,7 +1103,7 @@ public class Counting extends BaseLiveWallpaperService
 			nPC30sHour[i] = new Sprite(npx30sHour[i], npy30sHour[i] + 42, this.mCircleTextureRegion_5_Hour,
 					mEngine.getVertexBufferObjectManager());
 			body = createHexagonBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 			mScene.attachChild(nPC30sHour[i]);
 		}
 	}
@@ -1122,7 +1113,7 @@ public class Counting extends BaseLiveWallpaperService
 			nPC30sHour[i] = new Sprite(npx30sHour[i], npy30sHour[i], this.mCircleTextureRegion_6_Hour,
 					mEngine.getVertexBufferObjectManager());
 			body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 			mScene.attachChild(nPC30sHour[i]);
 		}
 	}
@@ -1136,7 +1127,7 @@ public class Counting extends BaseLiveWallpaperService
 			body = createHexagonBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
 			nPC30sHour[i].setIgnoreUpdate(true);
 			mScene.attachChild(nPC30sHour[i]);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 		}
 	}
 
@@ -1147,7 +1138,7 @@ public class Counting extends BaseLiveWallpaperService
 			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
 			nPC30sHour[i].setIgnoreUpdate(true);
 			mScene.attachChild(nPC30sHour[i]);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 		}
 	}
 
@@ -1161,7 +1152,7 @@ public class Counting extends BaseLiveWallpaperService
 			// nPC30sHour[i].animate(1000);
 			nPC30sHour[i].setIgnoreUpdate(true);
 			mScene.attachChild(nPC30sHour[i]);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 		}
 	}
 
@@ -1170,7 +1161,7 @@ public class Counting extends BaseLiveWallpaperService
 			nPC30sHour[i] = new Sprite(npx30sHour[i] - 16, npy30sHour[i] - 28, this.mTriangleFaceTextureRegion_10_Hour,
 					mEngine.getVertexBufferObjectManager());
 			body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 			mScene.attachChild(nPC30sHour[i]);
 		}
 	}
@@ -1180,7 +1171,7 @@ public class Counting extends BaseLiveWallpaperService
 			nPC30sHour[i] = new Sprite(npx30sHour[i] - 16, npy30sHour[i] - 28, this.mTriangleFaceTextureRegion_11_Hour,
 					mEngine.getVertexBufferObjectManager());
 			body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 			mScene.attachChild(nPC30sHour[i]);
 		}
 	}
@@ -1190,7 +1181,7 @@ public class Counting extends BaseLiveWallpaperService
 			nPC30sHour[i] = new Sprite(npx30sHour[i] - 16, npy30sHour[i] - 28, this.mTriangleFaceTextureRegion_12_Hour,
 					mEngine.getVertexBufferObjectManager());
 			body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, true));
+			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 			mScene.attachChild(nPC30sHour[i]);
 		}
 	}
