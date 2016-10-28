@@ -59,6 +59,8 @@ public class Counting extends BaseLiveWallpaperService
 
 	private static final int CAMERA_WIDTH = 360;
 	private static final int CAMERA_HEIGHT = 640;
+	
+	private static final int FRAME_RATE = 59;
 
 	private static final FixtureDef FIXTURE_DEF = PhysicsFactory.createFixtureDef(.5f, 1f, 0f);
 	// ===========================================================
@@ -124,7 +126,7 @@ public class Counting extends BaseLiveWallpaperService
 
 	@Override
 	public org.andengine.engine.Engine onCreateEngine(final EngineOptions pEngineOptions) {
-		return new org.andengine.engine.FixedStepEngine(pEngineOptions, 10);
+		return new org.andengine.engine.FixedStepEngine(pEngineOptions, FRAME_RATE);
 	}
 
 	@Override
