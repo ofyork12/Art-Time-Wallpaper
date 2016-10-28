@@ -13,7 +13,7 @@ import org.andengine.engine.handler.timer.ITimerCallback;
 import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
-import org.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
+import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.IOnAreaTouchListener;
 import org.andengine.entity.scene.IOnSceneTouchListener;
@@ -40,6 +40,7 @@ import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
+import org.andengine.util.adt.color.Color;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -61,9 +62,8 @@ public class Counting extends BaseLiveWallpaperService
 	private static final int CAMERA_WIDTH = 360;
 	private static final int CAMERA_HEIGHT = 640;
 
-	private static final int FRAME_RATE = 59;
-
 	private static final FixtureDef FIXTURE_DEF = PhysicsFactory.createFixtureDef(.5f, 1f, 0f);
+	
 	// ===========================================================
 	// Fields
 	// ===========================================================
@@ -121,13 +121,15 @@ public class Counting extends BaseLiveWallpaperService
 
 	@Override
 	public EngineOptions onCreateEngineOptions() {
-		return new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, new FillResolutionPolicy(),
+		return new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, 
+				new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT),
 				new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT));
 	}
 
 	@Override
 	public org.andengine.engine.Engine onCreateEngine(final EngineOptions pEngineOptions) {
-		return new org.andengine.engine.FixedStepEngine(pEngineOptions, FRAME_RATE);
+		return super.onCreateEngine(pEngineOptions);
+		// return new org.andengine.engine.FixedStepEngine(pEngineOptions, FRAME_RATE);
 	}
 
 	@Override
@@ -169,54 +171,53 @@ public class Counting extends BaseLiveWallpaperService
 		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
 		AssetManager am = getAssets();
 
-		this.mCircle_1_min_TextureRegion1 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture1single, am,
-				"a_red.png", 0, 0); // Box 64x32
-		this.mCircle_2_min_TextureRegion2 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture2single, am,
-				"a_orange.png", 0, 0); //
-		this.mCircle_3_min_TextureRegion3 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture3single, am,
-				"a_yellow.png", 0, 0); //
-		this.mCircle_4_min_TextureRegion4 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture4single, am,
-				"a_green.png", 0, 0); //
-		this.mCircle_5_min_TextureRegion5 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture5single, am,
-				"a_blue.png", 0, 0); //
-		this.mCircle_6_min_TextureRegion6 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture6single, am,
-				"a_purple.png", 0, 0); //
-		this.mCircle_7_min_TextureRegion7 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture7single, am,
-				"a_brown.png", 0, 0); //
-		this.mCircle_8_min_TextureRegion8 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture8single, am,
-				"a_pink.png", 0, 0); //
-		this.mCircle_9_min_TextureRegion9 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture9single, am,
-				"a_skyblue.png", 0, 0); //
+		this.mCircle_1_min_TextureRegion1 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture1single, am, "a_red.png", 0, 0); // Box 64x32
+		this.mCircle_2_min_TextureRegion2 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture2single, am,"a_orange.png", 0, 0); //
+		this.mCircle_3_min_TextureRegion3 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture3single, am, "a_yellow.png", 0, 0); //
+		this.mCircle_4_min_TextureRegion4 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture4single, am, "a_green.png", 0, 0); //
+		this.mCircle_5_min_TextureRegion5 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture5single, am, "a_blue.png", 0, 0); //
+		this.mCircle_6_min_TextureRegion6 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture6single, am, "a_purple.png", 0, 0); //
+		this.mCircle_7_min_TextureRegion7 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture7single, am, "a_brown.png", 0, 0); //
+		this.mCircle_8_min_TextureRegion8 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture8single, am, "a_pink.png", 0, 0); //
+		this.mCircle_9_min_TextureRegion9 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture9single, am, "a_skyblue.png", 0, 0); //
+		this.mTriangleFaceTextureRegion10 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture10, am, "ten_red.png", 0, 0); // 64x32
+		this.mTriangleFaceTextureRegion20 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture20, am, "ten_orange.png", 0, 0); // 64x32
+		this.mTriangleFaceTextureRegion30 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture30, am, "ten_yellow.png", 0, 0); // 64x32
+		this.mTriangleFaceTextureRegion40 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture40, am, "ten_green.png", 0, 0); // 64x32
+		this.mTriangleFaceTextureRegion50 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture50, am,"ten_blue.png", 0, 0); // 64x32
 
-		this.mTriangleFaceTextureRegion10 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture10, am,
-				"ten_red.png", 0, 0); // 64x32
-		this.mTriangleFaceTextureRegion20 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture20, am,
-				"ten_orange.png", 0, 0); // 64x32
-		this.mTriangleFaceTextureRegion30 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture30, am,
-				"ten_yellow.png", 0, 0); // 64x32
-		this.mTriangleFaceTextureRegion40 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture40, am,
-				"ten_green.png", 0, 0); // 64x32
-		this.mTriangleFaceTextureRegion50 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture50, am,
-				"ten_blue.png", 0, 0); // 64x32
-
-		this.mCircleTextureRegion_1_Hour = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture_1_Hour, am,
-				"a_group_one.png", 0, 0); // Box 64x32
-		this.mCircleTextureRegion_2_Hour = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture_2_Hour, am,
-				"a_group_two.png", 0, 0); //
-		this.mCircleTextureRegion_3_Hour = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture_3_Hour, am,
-				"a_group_three.png", 0, 0); //
-		this.mCircleTextureRegion_4_Hour = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture_4_Hour, am,
-				"a_group_four.png", 0, 0); //
-		this.mCircleTextureRegion_5_Hour = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture_5_Hour, am,
-				"a_group_five.png", 0, 0); //
-		this.mCircleTextureRegion_6_Hour = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture_6_Hour, am,
-				"a_group_six.png", 0, 0); //
-		this.mCircleTextureRegion_7_Hour = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture_7_Hour, am,
-				"a_group_seven.png", 0, 0); //
-		this.mCircleTextureRegion_8_Hour = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture_8_Hour, am,
-				"a_group_eight.png", 0, 0); //
-		this.mCircleTextureRegion_9_Hour = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture_9_Hour, am,
-				"a_group_nine.png", 0, 0); //
+		this.mCircleTextureRegion_1_Hour = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture_1_Hour, am, "a_group_one.png", 0, 0); // Box 64x32
+		this.mCircleTextureRegion_2_Hour = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture_2_Hour, am, "a_group_two.png", 0, 0); //
+		this.mCircleTextureRegion_3_Hour = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture_3_Hour, am, "a_group_three.png", 0, 0); //
+		this.mCircleTextureRegion_4_Hour = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture_4_Hour, am, "a_group_four.png", 0, 0); //
+		this.mCircleTextureRegion_5_Hour = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture_5_Hour, am, "a_group_five.png", 0, 0); //
+		this.mCircleTextureRegion_6_Hour = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture_6_Hour, am, "a_group_six.png", 0, 0); //
+		this.mCircleTextureRegion_7_Hour = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture_7_Hour, am, "a_group_seven.png", 0, 0); //
+		this.mCircleTextureRegion_8_Hour = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture_8_Hour, am, "a_group_eight.png", 0, 0); //
+		this.mCircleTextureRegion_9_Hour = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture_9_Hour, am, "a_group_nine.png", 0, 0); //
 		this.mTriangleFaceTextureRegion_10_Hour = BitmapTextureAtlasTextureRegionFactory
 				.createFromAsset(texture_10_Hour, am, "a_group_ten.png", 0, 0); // 64x32
 		this.mTriangleFaceTextureRegion_11_Hour = BitmapTextureAtlasTextureRegionFactory
@@ -257,6 +258,13 @@ public class Counting extends BaseLiveWallpaperService
 		pOnCreateResourcesCallback.onCreateResourcesFinished();
 	}
 
+	private static final int TOP_BUFFER = 50;
+	private static final int BOTTOM_BUFFER = 75;
+	private static final int BOX_X_OFFSET = 59;
+	private static final int BOX_Y_OFFSET = 72;
+	private static final int BOX_SIZE = 20;
+	private static final int WALL_WIDTH = 2;
+	
 	@Override
 	public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) {
 
@@ -267,17 +275,18 @@ public class Counting extends BaseLiveWallpaperService
 
 		this.mPhysicsWorld = new PhysicsWorld(new Vector2(0, SensorManager.SENSOR_STATUS_ACCURACY_HIGH), false);
 		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
-		final Rectangle ground = new Rectangle(0, CAMERA_HEIGHT, CAMERA_WIDTH, 1, vbom);
-		final Rectangle roof = new Rectangle(0, 30, CAMERA_HEIGHT, 1, vbom);
-		final Rectangle left = new Rectangle(-1, 0, 1, CAMERA_HEIGHT, vbom);
-		final Rectangle right = new Rectangle(CAMERA_WIDTH, 0, 2, CAMERA_HEIGHT, vbom);
-		final Rectangle square = new Rectangle(CAMERA_WIDTH / 2 - 59, CAMERA_HEIGHT / 2 - 72, 20, 20, vbom);
-		final Rectangle square2 = new Rectangle(CAMERA_WIDTH / 2 + 40, CAMERA_HEIGHT / 2 - 72, 20, 20, vbom);
+		
+		final Rectangle ground = new Rectangle(CAMERA_WIDTH/2, BOTTOM_BUFFER, CAMERA_WIDTH, WALL_WIDTH, vbom);
+		final Rectangle roof = new Rectangle(CAMERA_WIDTH/2, CAMERA_HEIGHT - TOP_BUFFER, CAMERA_WIDTH, WALL_WIDTH, vbom);
+		final Rectangle left = new Rectangle(2 * WALL_WIDTH, CAMERA_HEIGHT/2, WALL_WIDTH, CAMERA_HEIGHT, vbom);
+		final Rectangle right = new Rectangle(CAMERA_WIDTH - 2 * WALL_WIDTH, CAMERA_HEIGHT/2, WALL_WIDTH, CAMERA_HEIGHT, vbom);
+		final Rectangle square = new Rectangle(CAMERA_WIDTH / 2 - BOX_X_OFFSET, CAMERA_HEIGHT / 2 + BOX_Y_OFFSET, BOX_SIZE, BOX_SIZE, vbom);
+		final Rectangle square2 = new Rectangle(CAMERA_WIDTH / 2 + BOX_X_OFFSET, CAMERA_HEIGHT / 2 + BOX_Y_OFFSET, BOX_SIZE, BOX_SIZE, vbom);
 
-		ground.setColor(1, 0, 0, 1);
-		roof.setColor(1, 1, 0, 1);
-		right.setColor(0, 0, 1, 1);
-		left.setColor(1, 0, 0, 1);
+		ground.setColor(Color.RED);
+		roof.setColor(Color.YELLOW);
+		right.setColor(Color.BLUE);
+		left.setColor(Color.GREEN);
 
 		final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(1f, 1.f, 0f);
 
