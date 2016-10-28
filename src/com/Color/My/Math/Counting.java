@@ -49,6 +49,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 import android.content.res.AssetManager;
 import android.hardware.SensorManager;
+import android.util.Log;
 import android.view.MotionEvent;
 
 public class Counting extends BaseLiveWallpaperService
@@ -59,7 +60,7 @@ public class Counting extends BaseLiveWallpaperService
 
 	private static final int CAMERA_WIDTH = 360;
 	private static final int CAMERA_HEIGHT = 640;
-	
+
 	private static final int FRAME_RATE = 59;
 
 	private static final FixtureDef FIXTURE_DEF = PhysicsFactory.createFixtureDef(.5f, 1f, 0f);
@@ -447,45 +448,49 @@ public class Counting extends BaseLiveWallpaperService
 		 * this.mTouchScreenCount++; Debug.d("ScreenTouches: " +
 		 * this.mTouchScreenCount); Debug.d("Hour: " + this.mFaceHour);
 		 */
-		if (this.mFaceHour % 512 == 1) {
-
+		int hour = mFaceHour % 512;
+		Log.v("Brion", "Hour is " + hour);
+		switch (hour) {
+		case 0:
+			break;
+		case 1:
 			add_1_Hour();
-
-		} else if (this.mFaceHour % 512 == 2) {
-
+			break;
+		case 2:
 			add_2_Hour();
-		} else if (this.mFaceHour % 512 == 3) {
-
+			break;
+		case 3:
 			add_3_Hour();
-		} else if (this.mFaceHour % 512 == 4) {
-
+			break;
+		case 4:
 			add_4_Hour();
-		} else if (this.mFaceHour % 512 == 5) {
-
+			break;
+		case 5:
 			add_5_Hour();
-		} else if (this.mFaceHour % 512 == 6) {
-
+			break;
+		case 6:
 			add_6_Hour();
-		} else if (this.mFaceHour % 512 == 7) {
-
+			break;
+		case 7:
 			add_7_Hour();
-		} else if (this.mFaceHour % 512 == 8) {
-
+			break;
+		case 8:
 			add_8_Hour();
-		} else if (this.mFaceHour % 512 == 9) {
-
+			break;
+		case 9:
 			add_9_Hour();
-		} else if (this.mFaceHour % 512 == 10) {
-
+			break;
+		case 10:
 			add_10_Hour();
-		} else if (this.mFaceHour % 512 == 11) {
-
+			break;
+		case 11:
 			add_11_Hour();
-		} else if (this.mFaceHour % 512 == 12) {
-
+			break;
+		case 12:
 			add_12_Hour();
-
-		} else {
+			break;
+		default:
+			throw new IllegalArgumentException("Hour is " + hour);
 		}
 	}
 
@@ -497,171 +502,235 @@ public class Counting extends BaseLiveWallpaperService
 		 * this.mTouchScreenCount++; Debug.d("ScreenTouches: " +
 		 * this.mTouchScreenCount);
 		 */
-		if (this.mFaceMin % 512 == 1) {
+		int minute = mFaceMin % 512;
+		Log.v("Brion", "Minute is " + minute);
+		switch (minute) {
+		case 0:
+			break;
+		case 1:
 			add_1_min();
-		} else if (this.mFaceMin % 512 == 2) {
+			break;
+		case 2:
 			add_2_min();
-		} else if (this.mFaceMin % 512 == 3) {
+			break;
+		case 3:
 			add_3_min();
-		} else if (this.mFaceMin % 512 == 4) {
+			break;
+		case 4:
 			add_4_min();
-		} else if (this.mFaceMin % 512 == 5) {
+			break;
+		case 5:
 			add_5_min();
-		} else if (this.mFaceMin % 512 == 6) {
+			break;
+		case 6:
 			add_6_min();
-		} else if (this.mFaceMin % 512 == 7) {
+			break;
+		case 7:
 			add_7_min();
-		} else if (this.mFaceMin % 512 == 8) {
+			break;
+		case 8:
 			add_8_min();
-		} else if (this.mFaceMin % 512 == 9) {
+			break;
+		case 9:
 			add_9_min();
-		} else if (this.mFaceMin % 512 == 10) {
+			break;
+		case 10:
 			add_10_min();
-		} else if (this.mFaceMin % 512 == 11) {
+			break;
+		case 11:
 			add_10_min();
 			add_1_min();
-		} else if (this.mFaceMin % 512 == 12) {
+			break;
+		case 12:
 			add_10_min();
 			add_2_min();
-		} else if (this.mFaceMin % 512 == 13) {
+			break;
+		case 13:
 			add_10_min();
 			add_3_min();
-		} else if (this.mFaceMin % 512 == 14) {
+			break;
+		case 14:
 			add_10_min();
 			add_4_min();
-		} else if (this.mFaceMin % 512 == 15) {
+			break;
+		case 15:
 			add_10_min();
 			add_5_min();
-		} else if (this.mFaceMin % 512 == 16) {
+			break;
+		case 16:
 			add_10_min();
 			add_6_min();
-		} else if (this.mFaceMin % 512 == 17) {
+			break;
+		case 17:
 			add_10_min();
 			add_7_min();
-		} else if (this.mFaceMin % 512 == 18) {
+			break;
+		case 18:
 			add_10_min();
 			add_8_min();
-		} else if (this.mFaceMin % 512 == 19) {
+			break;
+		case 19:
 			add_10_min();
 			add_9_min();
-		} else if (this.mFaceMin % 512 == 20) {
+			break;
+		case 20:
 			add_20_min();
-		} else if (this.mFaceMin % 512 == 21) {
+			break;
+		case 21:
 			add_20_min();
 			add_1_min();
-		} else if (this.mFaceMin % 512 == 22) {
+			break;
+		case 22:
 			add_20_min();
 			add_2_min();
-		} else if (this.mFaceMin % 512 == 23) {
+			break;
+		case 23:
 			add_20_min();
 			add_3_min();
-		} else if (this.mFaceMin % 512 == 24) {
+			break;
+		case 24:
 			add_20_min();
 			add_4_min();
-		} else if (this.mFaceMin % 512 == 25) {
+			break;
+		case 25:
 			add_20_min();
 			add_5_min();
-		} else if (this.mFaceMin % 512 == 26) {
+			break;
+		case 26:
 			add_20_min();
 			add_6_min();
-		} else if (this.mFaceMin % 512 == 27) {
+			break;
+		case 27:
 			add_20_min();
 			add_7_min();
-		} else if (this.mFaceMin % 512 == 28) {
+			break;
+		case 28:
 			add_20_min();
 			add_8_min();
-		} else if (this.mFaceMin % 512 == 29) {
+			break;
+		case 29:
 			add_20_min();
 			add_9_min();
-
-		} else if (this.mFaceMin % 512 == 30) {
+			break;
+		case 30:
 			add_30_min();
-		} else if (this.mFaceMin % 512 == 31) {
+			break;
+		case 31:
 			add_30_min();
 			add_1_min();
-		} else if (this.mFaceMin % 512 == 32) {
+			break;
+		case 32:
 			add_30_min();
 			add_2_min();
-		} else if (this.mFaceMin % 512 == 33) {
+			break;
+		case 33:
 			add_30_min();
 			add_3_min();
-		} else if (this.mFaceMin % 512 == 34) {
+			break;
+		case 34:
 			add_30_min();
 			add_4_min();
-		} else if (this.mFaceMin % 512 == 35) {
+			break;
+		case 35:
 			add_30_min();
 			add_5_min();
-		} else if (this.mFaceMin % 512 == 36) {
+			break;
+		case 36:
 			add_30_min();
 			add_6_min();
-		} else if (this.mFaceMin % 512 == 37) {
+			break;
+		case 37:
 			add_30_min();
 			add_7_min();
-		} else if (this.mFaceMin % 512 == 38) {
+			break;
+		case 38:
 			add_30_min();
 			add_8_min();
-		} else if (this.mFaceMin % 512 == 39) {
+			break;
+		case 39:
 			add_30_min();
 			add_9_min();
-		} else if (this.mFaceMin % 512 == 40) {
+			break;
+		case 40:
 			add_40_min();
-		} else if (this.mFaceMin % 512 == 41) {
+			break;
+		case 41:
 			add_40_min();
 			add_1_min();
-		} else if (this.mFaceMin % 512 == 42) {
+			break;
+		case 42:
 			add_40_min();
 			add_2_min();
-		} else if (this.mFaceMin % 512 == 43) {
+			break;
+		case 43:
 			add_40_min();
 			add_3_min();
-		} else if (this.mFaceMin % 512 == 44) {
+			break;
+		case 44:
 			add_40_min();
 			add_4_min();
-		} else if (this.mFaceMin % 512 == 45) {
+			break;
+		case 45:
 			add_40_min();
 			add_5_min();
-		} else if (this.mFaceMin % 512 == 46) {
+			break;
+		case 46:
 			add_40_min();
 			add_6_min();
-		} else if (this.mFaceMin % 512 == 47) {
+			break;
+		case 47:
 			add_40_min();
 			add_7_min();
-		} else if (this.mFaceMin % 512 == 48) {
+			break;
+		case 48:
 			add_40_min();
 			add_8_min();
-		} else if (this.mFaceMin % 512 == 49) {
+			break;
+		case 49:
 			add_40_min();
 			add_9_min();
-		} else if (this.mFaceMin % 512 == 50) {
+			break;
+		case 50:
 			add_50_min();
-		} else if (this.mFaceMin % 512 == 51) {
+			break;
+		case 51:
 			add_50_min();
 			add_1_min();
-		} else if (this.mFaceMin % 512 == 52) {
+			break;
+		case 52:
 			add_50_min();
 			add_2_min();
-		} else if (this.mFaceMin % 512 == 53) {
+			break;
+		case 53:
 			add_50_min();
 			add_3_min();
-		} else if (this.mFaceMin % 512 == 54) {
+			break;
+		case 54:
 			add_50_min();
 			add_4_min();
-		} else if (this.mFaceMin % 512 == 55) {
+			break;
+		case 55:
 			add_50_min();
 			add_5_min();
-		} else if (this.mFaceMin % 512 == 56) {
+			break;
+		case 56:
 			add_50_min();
 			add_6_min();
-		} else if (this.mFaceMin % 512 == 57) {
+			break;
+		case 57:
 			add_50_min();
 			add_7_min();
-		} else if (this.mFaceMin % 512 == 58) {
+			break;
+		case 58:
 			add_50_min();
 			add_8_min();
-		} else if (this.mFaceMin % 512 == 59) {
+			break;
+		case 59:
 			add_50_min();
 			add_9_min();
-
+			break;
+		default:
+			throw new IllegalArgumentException("Minute is " + minute);
 		}
 	}
 
