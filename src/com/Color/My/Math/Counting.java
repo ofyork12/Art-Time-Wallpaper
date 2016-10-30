@@ -775,7 +775,7 @@ public class Counting extends BaseLiveWallpaperService
 		npy9s = new int[27];
 
 		npx9s[0] = (int) (CAMERA_WIDTH / 2 - 18f);
-		npy9s[0] = (int) (CAMERA_HEIGHT - 164f);
+		npy9s[0] = (int) (BOTTOM_BUFFER + 32);
 
 		npx9s[1] = (int) (npx9s[0] - 33f);
 		npy9s[1] = (int) (npy9s[0]);
@@ -862,20 +862,18 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	private void add_1_min() {
-		for (int i = 0; i <= 0; i++) {
-			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_1_min_TextureRegion1,
-					mEngine.getVertexBufferObjectManager());
-			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
+		nPC9s[0] = new Sprite(npx9s[0], npy9s[0], this.mCircle_1_min_TextureRegion1, vbom);
+		body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[0], BodyType.DynamicBody, FIXTURE_DEF);
+		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[0], body, true, false));
 
-			mScene.attachChild(nPC9s[i]);
-		}
+		mScene.attachChild(nPC9s[0]);
 	}
 
 	private void add_2_min() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 1; i++) {
-			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_2_min_TextureRegion2,
-					mEngine.getVertexBufferObjectManager());
+			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_2_min_TextureRegion2, vbom);
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 
@@ -884,16 +882,15 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	private void add_3_min() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 0; i++) {
-			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_3_min_TextureRegion3,
-					mEngine.getVertexBufferObjectManager());
+			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_3_min_TextureRegion3, vbom);
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 		for (int i = 3; i <= 4; i++) {
-			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i] - 3f, this.mCircle_3_min_TextureRegion3,
-					mEngine.getVertexBufferObjectManager());
+			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i] - 3f, this.mCircle_3_min_TextureRegion3, vbom);
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 
@@ -902,16 +899,15 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	private void add_4_min() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 1; i++) {
-			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_4_min_TextureRegion4,
-					mEngine.getVertexBufferObjectManager());
+			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_4_min_TextureRegion4, vbom);
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 		for (int i = 3; i <= 4; i++) {
-			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_4_min_TextureRegion4,
-					mEngine.getVertexBufferObjectManager());
+			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_4_min_TextureRegion4, vbom);
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
@@ -919,16 +915,15 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	private void add_5_min() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 1; i++) {
-			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_5_min_TextureRegion5,
-					mEngine.getVertexBufferObjectManager());
+			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_5_min_TextureRegion5, vbom);
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 		for (int i = 3; i <= 5; i++) {
-			nPC9s[i] = new Sprite(npx9s[i], npy9s[i] - 5f, this.mCircle_5_min_TextureRegion5,
-					mEngine.getVertexBufferObjectManager());
+			nPC9s[i] = new Sprite(npx9s[i], npy9s[i] - 5f, this.mCircle_5_min_TextureRegion5, vbom);
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
@@ -937,23 +932,21 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	void add_6_min() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 0; i++) {
-			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_6_min_TextureRegion6,
-					mEngine.getVertexBufferObjectManager());
+			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_6_min_TextureRegion6, vbom);
 			body = createTriangleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 		for (int i = 3; i <= 4; i++) {
-			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_6_min_TextureRegion6,
-					mEngine.getVertexBufferObjectManager());
+			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_6_min_TextureRegion6, vbom);
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 		for (int i = 6; i <= 8; i++) {
-			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_6_min_TextureRegion6,
-					mEngine.getVertexBufferObjectManager());
+			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_6_min_TextureRegion6, vbom);
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
@@ -961,23 +954,21 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	void add_7_min() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 1; i++) {
-			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_7_min_TextureRegion7,
-					mEngine.getVertexBufferObjectManager());
+			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_7_min_TextureRegion7, vbom);
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 		for (int i = 3; i <= 5; i++) {
-			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_7_min_TextureRegion7,
-					mEngine.getVertexBufferObjectManager());
+			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_7_min_TextureRegion7, vbom);
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
 		}
 		for (int i = 6; i <= 7; i++) {
-			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_7_min_TextureRegion7,
-					mEngine.getVertexBufferObjectManager());
+			nPC9s[i] = new Sprite(npx9s[i] + 16f, npy9s[i], this.mCircle_7_min_TextureRegion7, vbom);
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 			mScene.attachChild(nPC9s[i]);
@@ -985,17 +976,16 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	void add_8_min() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 2; i++) {
-			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_8_min_TextureRegion8,
-					mEngine.getVertexBufferObjectManager());
+			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_8_min_TextureRegion8, vbom);
 			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			nPC9s[i].setIgnoreUpdate(true);
 			mScene.attachChild(nPC9s[i]);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC9s[i], body, true, false));
 		}
 		for (int i = 4; i <= 8; i++) {
-			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_8_min_TextureRegion8,
-					mEngine.getVertexBufferObjectManager());
+			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_8_min_TextureRegion8, vbom);
 			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			nPC9s[i].setIgnoreUpdate(true);
 			mScene.attachChild(nPC9s[i]);
@@ -1004,9 +994,9 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	void add_9_min() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 8; i++) {
-			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_9_min_TextureRegion9,
-					mEngine.getVertexBufferObjectManager());
+			nPC9s[i] = new Sprite(npx9s[i], npy9s[i], this.mCircle_9_min_TextureRegion9, vbom);
 			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC9s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			nPC9s[i].setIgnoreUpdate(true);
 			mScene.attachChild(nPC9s[i]);
@@ -1020,8 +1010,8 @@ public class Counting extends BaseLiveWallpaperService
 		npx10s = new int[20];
 		npy10s = new int[20];
 
-		npx10s[0] = (int) (CAMERA_WIDTH / 2 - 58f);
-		npy10s[0] = (int) (CAMERA_HEIGHT / 2 + 52f);// one i = 0
+		npx10s[0] = (int) (CAMERA_WIDTH / 2 + 58f);
+		npy10s[0] = (int) (BOTTOM_BUFFER + 32);// one i = 0
 
 		npx10s[1] = (int) (npx10s[0] - 112f);
 		npy10s[1] = (int) (npy10s[0]); // two i = 0,1
@@ -1051,9 +1041,9 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	private void add_10_min() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 0; i++) {
-			nPC10s[i] = new Sprite(npx10s[i], npy10s[i] - 32, this.mTriangleFaceTextureRegion10,
-					mEngine.getVertexBufferObjectManager());
+			nPC10s[i] = new Sprite(npx10s[i], npy10s[i] - 32, this.mTriangleFaceTextureRegion10, vbom);
 			body = createTriangleBody(this.mPhysicsWorld, nPC10s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, false));
 			mScene.attachChild(nPC10s[i]);
@@ -1061,9 +1051,9 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	void add_20_min() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 3; i <= 4; i++) {
-			nPC10s[i] = new Sprite(npx10s[i], npy10s[i] + 64, this.mTriangleFaceTextureRegion20,
-					mEngine.getVertexBufferObjectManager());
+			nPC10s[i] = new Sprite(npx10s[i], npy10s[i] + 64, this.mTriangleFaceTextureRegion20, vbom);
 			body = createTriangleBody(this.mPhysicsWorld, nPC10s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, false));
 			mScene.attachChild(nPC10s[i]);
@@ -1071,18 +1061,15 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	void add_30_min() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 1; i++) {
-
-			nPC10s[i] = new Sprite(npx10s[i] + 56f, npy10s[i], this.mTriangleFaceTextureRegion30,
-					mEngine.getVertexBufferObjectManager());
+			nPC10s[i] = new Sprite(npx10s[i] + 56f, npy10s[i], this.mTriangleFaceTextureRegion30, vbom);
 			body = createTriangleBody(this.mPhysicsWorld, nPC10s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, false));
 			mScene.attachChild(nPC10s[i]);
 		}
 		for (int i = 3; i <= 3; i++) {
-
-			nPC10s[i] = new Sprite(npx10s[i] + 56f, npy10s[i], this.mTriangleFaceTextureRegion30,
-					mEngine.getVertexBufferObjectManager());
+			nPC10s[i] = new Sprite(npx10s[i] + 56f, npy10s[i], this.mTriangleFaceTextureRegion30, vbom);
 			body = createTriangleBody(this.mPhysicsWorld, nPC10s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, false));
 			mScene.attachChild(nPC10s[i]);
@@ -1090,17 +1077,15 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	void add_40_min() {
-
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 1; i++) {
-			nPC10s[i] = new Sprite(npx10s[i] + 56f, npy10s[i], this.mTriangleFaceTextureRegion40,
-					mEngine.getVertexBufferObjectManager());
+			nPC10s[i] = new Sprite(npx10s[i] + 56f, npy10s[i], this.mTriangleFaceTextureRegion40, vbom);
 			body = createTriangleBody(this.mPhysicsWorld, nPC10s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, false));
 			mScene.attachChild(nPC10s[i]);
 		}
 		for (int i = 5; i <= 6; i++) {
-			nPC10s[i] = new Sprite(npx10s[i] + 56f, npy10s[i] - 93f, this.mTriangleFaceTextureRegion40,
-					mEngine.getVertexBufferObjectManager());
+			nPC10s[i] = new Sprite(npx10s[i] + 56f, npy10s[i] - 93f, this.mTriangleFaceTextureRegion40, vbom);
 			body = createTriangleBody(this.mPhysicsWorld, nPC10s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, false));
 			mScene.attachChild(nPC10s[i]);
@@ -1108,9 +1093,9 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	void add_50_min() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 4; i++) {
-			nPC10s[i] = new Sprite(npx10s[i], npy10s[i], this.mTriangleFaceTextureRegion50,
-					mEngine.getVertexBufferObjectManager());
+			nPC10s[i] = new Sprite(npx10s[i], npy10s[i], this.mTriangleFaceTextureRegion50, vbom);
 			body = createTriangleBody(this.mPhysicsWorld, nPC10s[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC10s[i], body, true, false));
 			mScene.attachChild(nPC10s[i]);
@@ -1124,13 +1109,13 @@ public class Counting extends BaseLiveWallpaperService
 		npy30sHour = new int[1];
 
 		npx30sHour[0] = (int) (CAMERA_WIDTH / 4f + 4);
-		npy30sHour[0] = (int) (64);
+		npy30sHour[0] = (int) (CAMERA_HEIGHT - TOP_BUFFER - 128);
 	}
 
 	private void add_1_Hour() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i] + 60, npy30sHour[i] + 64, this.mCircleTextureRegion_1_Hour,
-					mEngine.getVertexBufferObjectManager());
+			nPC30sHour[i] = new Sprite(npx30sHour[i] + 60, npy30sHour[i] + 64, this.mCircleTextureRegion_1_Hour, vbom);
 			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody,
 					FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
@@ -1139,10 +1124,10 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	private void add_2_Hour() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 0; i++) {
 
-			nPC30sHour[i] = new Sprite(npx30sHour[i] + 24, npy30sHour[i] + 64, this.mCircleTextureRegion_2_Hour,
-					mEngine.getVertexBufferObjectManager());
+			nPC30sHour[i] = new Sprite(npx30sHour[i] + 24, npy30sHour[i] + 64, this.mCircleTextureRegion_2_Hour, vbom);
 			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 			mScene.attachChild(nPC30sHour[i]);
@@ -1150,10 +1135,9 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	private void add_3_Hour() {
-
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i] + 24, npy30sHour[i] + 42, this.mCircleTextureRegion_3_Hour,
-					mEngine.getVertexBufferObjectManager());
+			nPC30sHour[i] = new Sprite(npx30sHour[i] + 24, npy30sHour[i] + 42, this.mCircleTextureRegion_3_Hour, vbom);
 			body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 			mScene.attachChild(nPC30sHour[i]);
@@ -1161,9 +1145,9 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	private void add_4_Hour() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i] + 24, npy30sHour[i] + 16, this.mCircleTextureRegion_4_Hour,
-					mEngine.getVertexBufferObjectManager());
+			nPC30sHour[i] = new Sprite(npx30sHour[i] + 24, npy30sHour[i] + 16, this.mCircleTextureRegion_4_Hour, vbom);
 			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 			mScene.attachChild(nPC30sHour[i]);
@@ -1171,9 +1155,9 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	private void add_5_Hour() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i], npy30sHour[i] + 42, this.mCircleTextureRegion_5_Hour,
-					mEngine.getVertexBufferObjectManager());
+			nPC30sHour[i] = new Sprite(npx30sHour[i], npy30sHour[i] + 42, this.mCircleTextureRegion_5_Hour, vbom);
 			body = createHexagonBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 			mScene.attachChild(nPC30sHour[i]);
@@ -1181,9 +1165,9 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	void add_6_Hour() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i], npy30sHour[i], this.mCircleTextureRegion_6_Hour,
-					mEngine.getVertexBufferObjectManager());
+			nPC30sHour[i] = new Sprite(npx30sHour[i], npy30sHour[i], this.mCircleTextureRegion_6_Hour, vbom);
 			body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 			mScene.attachChild(nPC30sHour[i]);
@@ -1191,11 +1175,10 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	void add_7_Hour() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 0; i++)
-		// for (int i=13; i <= 19; i++)
 		{
-			nPC30sHour[i] = new Sprite(npx30sHour[i] + 4, npy30sHour[i], this.mCircleTextureRegion_7_Hour,
-					mEngine.getVertexBufferObjectManager());
+			nPC30sHour[i] = new Sprite(npx30sHour[i] + 4, npy30sHour[i], this.mCircleTextureRegion_7_Hour, vbom);
 			body = createHexagonBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
 			nPC30sHour[i].setIgnoreUpdate(true);
 			mScene.attachChild(nPC30sHour[i]);
@@ -1204,9 +1187,9 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	void add_8_Hour() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i], npy30sHour[i], this.mCircleTextureRegion_8_Hour,
-					mEngine.getVertexBufferObjectManager());
+			nPC30sHour[i] = new Sprite(npx30sHour[i], npy30sHour[i], this.mCircleTextureRegion_8_Hour, vbom);
 			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
 			nPC30sHour[i].setIgnoreUpdate(true);
 			mScene.attachChild(nPC30sHour[i]);
@@ -1215,11 +1198,12 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	void add_9_Hour() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i], npy30sHour[i], mCircleTextureRegion_9_Hour,
-					mEngine.getVertexBufferObjectManager());// npx30sHour[i],
-															// npy30sHour[i] ,
-															// mCircle_9_min_TextureRegion
+			nPC30sHour[i] = new Sprite(npx30sHour[i], npy30sHour[i], mCircleTextureRegion_9_Hour, vbom); 
+			// npx30sHour[i],
+			// npy30sHour[i] ,
+			// mCircle_9_min_TextureRegion
 			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
 			// nPC30sHour[i].animate(1000);
 			nPC30sHour[i].setIgnoreUpdate(true);
@@ -1229,9 +1213,9 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	private void add_10_Hour() {// add_4_Green_Dots_Hour();
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i] - 16, npy30sHour[i] - 28, this.mTriangleFaceTextureRegion_10_Hour,
-					mEngine.getVertexBufferObjectManager());
+			nPC30sHour[i] = new Sprite(npx30sHour[i] - 16, npy30sHour[i] - 28, this.mTriangleFaceTextureRegion_10_Hour, vbom);
 			body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 			mScene.attachChild(nPC30sHour[i]);
@@ -1239,9 +1223,9 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	private void add_11_Hour() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i] - 16, npy30sHour[i] - 28, this.mTriangleFaceTextureRegion_11_Hour,
-					mEngine.getVertexBufferObjectManager());
+			nPC30sHour[i] = new Sprite(npx30sHour[i] - 16, npy30sHour[i] - 28, this.mTriangleFaceTextureRegion_11_Hour, vbom);
 			body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 			mScene.attachChild(nPC30sHour[i]);
@@ -1249,9 +1233,9 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	private void add_12_Hour() {
+		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i] - 16, npy30sHour[i] - 28, this.mTriangleFaceTextureRegion_12_Hour,
-					mEngine.getVertexBufferObjectManager());
+			nPC30sHour[i] = new Sprite(npx30sHour[i] - 16, npy30sHour[i] - 28, this.mTriangleFaceTextureRegion_12_Hour, vbom);
 			body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
 			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
 			mScene.attachChild(nPC30sHour[i]);
