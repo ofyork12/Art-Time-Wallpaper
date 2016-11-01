@@ -30,6 +30,7 @@ import org.andengine.entity.util.FPSLogger;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.extension.physics.box2d.util.Vector2Pool;
 import org.andengine.extension.ui.livewallpaper.BaseLiveWallpaperService;
 import org.andengine.input.sensor.acceleration.AccelerationData;
 import org.andengine.input.sensor.acceleration.IAccelerationListener;
@@ -258,8 +259,8 @@ public class Counting extends BaseLiveWallpaperService
 		pOnCreateResourcesCallback.onCreateResourcesFinished();
 	}
 
-	private static final int TOP_BUFFER = 50;
-	private static final int BOTTOM_BUFFER = 75;
+	private static final int TOP_BUFFER = 1;
+	private static final int BOTTOM_BUFFER = 1;
 	private static final int BOX_X_OFFSET = 59;
 	private static final int BOX_Y_OFFSET = 72;
 	private static final int BOX_SIZE = 20;
@@ -271,15 +272,18 @@ public class Counting extends BaseLiveWallpaperService
 		this.mEngine.registerUpdateHandler(new FPSLogger());
 
 		this.mScene = new Scene();
+		this.mScene.getBackground().setColor(Color.BLACK);
+		
 		createSpriteSpawnTimeHandler();
 
-		this.mPhysicsWorld = new PhysicsWorld(new Vector2(0, SensorManager.SENSOR_STATUS_ACCURACY_HIGH), false);
+		this.mPhysicsWorld = new PhysicsWorld(new Vector2(0, SensorManager.GRAVITY_EARTH), false);
 		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
 		
 		final Rectangle ground = new Rectangle(CAMERA_WIDTH/2, BOTTOM_BUFFER, CAMERA_WIDTH, WALL_WIDTH, vbom);
 		final Rectangle roof = new Rectangle(CAMERA_WIDTH/2, CAMERA_HEIGHT - TOP_BUFFER, CAMERA_WIDTH, WALL_WIDTH, vbom);
-		final Rectangle left = new Rectangle(2 * WALL_WIDTH, CAMERA_HEIGHT/2, WALL_WIDTH, CAMERA_HEIGHT, vbom);
-		final Rectangle right = new Rectangle(CAMERA_WIDTH - 2 * WALL_WIDTH, CAMERA_HEIGHT/2, WALL_WIDTH, CAMERA_HEIGHT, vbom);
+		final Rectangle left = new Rectangle(WALL_WIDTH, CAMERA_HEIGHT/2, WALL_WIDTH, CAMERA_HEIGHT, vbom);
+		final Rectangle right = new Rectangle(CAMERA_WIDTH - WALL_WIDTH, CAMERA_HEIGHT/2, WALL_WIDTH, CAMERA_HEIGHT, vbom);
+		
 		final Rectangle square = new Rectangle(CAMERA_WIDTH / 2 - BOX_X_OFFSET, CAMERA_HEIGHT / 2 + BOX_Y_OFFSET, BOX_SIZE, BOX_SIZE, vbom);
 		final Rectangle square2 = new Rectangle(CAMERA_WIDTH / 2 + BOX_X_OFFSET, CAMERA_HEIGHT / 2 + BOX_Y_OFFSET, BOX_SIZE, BOX_SIZE, vbom);
 
@@ -288,7 +292,7 @@ public class Counting extends BaseLiveWallpaperService
 		right.setColor(Color.BLUE);
 		left.setColor(Color.GREEN);
 
-		final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(1f, 1.f, 0f);
+		final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(0f, 1f, 1f);
 
 		PhysicsFactory.createBoxBody(this.mPhysicsWorld, ground, BodyType.StaticBody, wallFixtureDef);
 		PhysicsFactory.createBoxBody(this.mPhysicsWorld, roof, BodyType.StaticBody, wallFixtureDef);
@@ -345,8 +349,12 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	@Override
-	public void onAccelerationChanged(final AccelerationData pAccelerometerData) {
-		this.mPhysicsWorld.setGravity(new Vector2(pAccelerometerData.getX() * -1, pAccelerometerData.getY()));
+	public void onAccelerationChanged(final AccelerationData pAccelerationData) {
+		if (mPhysicsWorld != null) {
+			final Vector2 gravity = Vector2Pool.obtain(pAccelerationData.getX(), pAccelerationData.getY());
+			this.mPhysicsWorld.setGravity(gravity);
+			Vector2Pool.recycle(gravity);
+		}
 	}
 
 	@Override
@@ -1261,8 +1269,8 @@ public class Counting extends BaseLiveWallpaperService
 		 * Remember that the vertices are relative to the center-coordinates of
 		 * the Shape.
 		 */
-		final float halfWidth = pShape.getScaleX() * 0.5f / PIXEL_TO_METER_RATIO_DEFAULT;
-		final float halfHeight = pShape.getScaleY() * 0.5f / PIXEL_TO_METER_RATIO_DEFAULT;
+		final float halfWidth = pShape.getWidth() * 0.5f / PIXEL_TO_METER_RATIO_DEFAULT;
+		final float halfHeight = pShape.getHeight() * 0.5f / PIXEL_TO_METER_RATIO_DEFAULT;
 
 		/*
 		 * The top and bottom vertex of the hexagon are on the bottom and top of
@@ -1303,8 +1311,8 @@ public class Counting extends BaseLiveWallpaperService
 		 * Remember that the vertices are relative to the center-coordinates of
 		 * the Shape.
 		 */
-		final float halfWidth = pShape.getScaleX() * 0.5f / PIXEL_TO_METER_RATIO_DEFAULT;
-		final float halfHeight = pShape.getScaleY() * 0.5f / PIXEL_TO_METER_RATIO_DEFAULT;
+		final float halfWidth = pShape.getWidth() * 0.5f / PIXEL_TO_METER_RATIO_DEFAULT;
+		final float halfHeight = pShape.getHeight() * 0.5f / PIXEL_TO_METER_RATIO_DEFAULT;
 
 		final float top = -halfHeight;
 		final float bottom = halfHeight;
