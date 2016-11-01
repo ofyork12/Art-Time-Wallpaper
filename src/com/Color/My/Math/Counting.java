@@ -512,16 +512,29 @@ public class Counting extends BaseLiveWallpaperService
 	}
 
 	private void addFaceMin() {
-		mScene.setBackground(new Background(0, 0, 0));
-
-		/*
-		 * Debug.d("mFaceMin: " + this.mFaceMin); Debug.d("min: " + this.min);
-		 * this.mTouchScreenCount++; Debug.d("ScreenTouches: " +
-		 * this.mTouchScreenCount);
-		 */
 		int minute = mFaceMin % 512;
-		Log.v("Brion", "Minute is " + minute);
-		switch (minute) {
+		switch (minute/10) {
+		case 0:
+			break;
+		case 1:
+			add_10_min();
+			break;
+		case 2:
+			add_20_min();
+			break;
+		case 3:
+			add_30_min();
+			break;
+		case 4:
+			add_40_min();
+			break;
+		case 5:
+			add_50_min();
+			break;
+		default:
+			throw new IllegalArgumentException("Tens is " + minute/10);
+		}
+		switch (minute % 10) {
 		case 0:
 			break;
 		case 1:
@@ -551,206 +564,11 @@ public class Counting extends BaseLiveWallpaperService
 		case 9:
 			add_9_min();
 			break;
-		case 10:
-			add_10_min();
-			break;
-		case 11:
-			add_10_min();
-			add_1_min();
-			break;
-		case 12:
-			add_10_min();
-			add_2_min();
-			break;
-		case 13:
-			add_10_min();
-			add_3_min();
-			break;
-		case 14:
-			add_10_min();
-			add_4_min();
-			break;
-		case 15:
-			add_10_min();
-			add_5_min();
-			break;
-		case 16:
-			add_10_min();
-			add_6_min();
-			break;
-		case 17:
-			add_10_min();
-			add_7_min();
-			break;
-		case 18:
-			add_10_min();
-			add_8_min();
-			break;
-		case 19:
-			add_10_min();
-			add_9_min();
-			break;
-		case 20:
-			add_20_min();
-			break;
-		case 21:
-			add_20_min();
-			add_1_min();
-			break;
-		case 22:
-			add_20_min();
-			add_2_min();
-			break;
-		case 23:
-			add_20_min();
-			add_3_min();
-			break;
-		case 24:
-			add_20_min();
-			add_4_min();
-			break;
-		case 25:
-			add_20_min();
-			add_5_min();
-			break;
-		case 26:
-			add_20_min();
-			add_6_min();
-			break;
-		case 27:
-			add_20_min();
-			add_7_min();
-			break;
-		case 28:
-			add_20_min();
-			add_8_min();
-			break;
-		case 29:
-			add_20_min();
-			add_9_min();
-			break;
-		case 30:
-			add_30_min();
-			break;
-		case 31:
-			add_30_min();
-			add_1_min();
-			break;
-		case 32:
-			add_30_min();
-			add_2_min();
-			break;
-		case 33:
-			add_30_min();
-			add_3_min();
-			break;
-		case 34:
-			add_30_min();
-			add_4_min();
-			break;
-		case 35:
-			add_30_min();
-			add_5_min();
-			break;
-		case 36:
-			add_30_min();
-			add_6_min();
-			break;
-		case 37:
-			add_30_min();
-			add_7_min();
-			break;
-		case 38:
-			add_30_min();
-			add_8_min();
-			break;
-		case 39:
-			add_30_min();
-			add_9_min();
-			break;
-		case 40:
-			add_40_min();
-			break;
-		case 41:
-			add_40_min();
-			add_1_min();
-			break;
-		case 42:
-			add_40_min();
-			add_2_min();
-			break;
-		case 43:
-			add_40_min();
-			add_3_min();
-			break;
-		case 44:
-			add_40_min();
-			add_4_min();
-			break;
-		case 45:
-			add_40_min();
-			add_5_min();
-			break;
-		case 46:
-			add_40_min();
-			add_6_min();
-			break;
-		case 47:
-			add_40_min();
-			add_7_min();
-			break;
-		case 48:
-			add_40_min();
-			add_8_min();
-			break;
-		case 49:
-			add_40_min();
-			add_9_min();
-			break;
-		case 50:
-			add_50_min();
-			break;
-		case 51:
-			add_50_min();
-			add_1_min();
-			break;
-		case 52:
-			add_50_min();
-			add_2_min();
-			break;
-		case 53:
-			add_50_min();
-			add_3_min();
-			break;
-		case 54:
-			add_50_min();
-			add_4_min();
-			break;
-		case 55:
-			add_50_min();
-			add_5_min();
-			break;
-		case 56:
-			add_50_min();
-			add_6_min();
-			break;
-		case 57:
-			add_50_min();
-			add_7_min();
-			break;
-		case 58:
-			add_50_min();
-			add_8_min();
-			break;
-		case 59:
-			add_50_min();
-			add_9_min();
-			break;
 		default:
-			throw new IllegalArgumentException("Minute is " + minute);
+			throw new IllegalArgumentException("Single is " + minute % 10);
 		}
 	}
-
+	
 	private void clearEntities(final Sprite face1r) {
 		face1r.clearUpdateHandlers();
 		// TODO: see if we fixed this above
@@ -1122,132 +940,102 @@ public class Counting extends BaseLiveWallpaperService
 
 	private void add_1_Hour() {
 		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
-		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i] + 60, npy30sHour[i] + 64, this.mCircleTextureRegion_1_Hour, vbom);
-			body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody,
-					FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
-			mScene.attachChild(nPC30sHour[i]);
-		}
+		nPC30sHour[0] = new Sprite(npx30sHour[0] + 60, npy30sHour[0] + 64, this.mCircleTextureRegion_1_Hour, vbom);
+		body = PhysicsFactory.createCircleBody(this.mPhysicsWorld, nPC30sHour[0], BodyType.DynamicBody,
+				FIXTURE_DEF);
+		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[0], body, true, false));
+		mScene.attachChild(nPC30sHour[0]);
 	}
 
 	private void add_2_Hour() {
 		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
-		for (int i = 0; i <= 0; i++) {
-
-			nPC30sHour[i] = new Sprite(npx30sHour[i] + 24, npy30sHour[i] + 64, this.mCircleTextureRegion_2_Hour, vbom);
-			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
-			mScene.attachChild(nPC30sHour[i]);
-		}
+		nPC30sHour[0] = new Sprite(npx30sHour[0] + 24, npy30sHour[0] + 64, this.mCircleTextureRegion_2_Hour, vbom);
+		body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC30sHour[0], BodyType.DynamicBody, FIXTURE_DEF);
+		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[0], body, true, false));
+		mScene.attachChild(nPC30sHour[0]);
 	}
 
 	private void add_3_Hour() {
 		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
-		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i] + 24, npy30sHour[i] + 42, this.mCircleTextureRegion_3_Hour, vbom);
-			body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
-			mScene.attachChild(nPC30sHour[i]);
+		nPC30sHour[0] = new Sprite(npx30sHour[0] + 24, npy30sHour[0] + 42, this.mCircleTextureRegion_3_Hour, vbom);
+		body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[0], BodyType.DynamicBody, FIXTURE_DEF);
+		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[0], body, true, false));
+		mScene.attachChild(nPC30sHour[0]);
 		}
-	}
 
 	private void add_4_Hour() {
 		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
-		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i] + 24, npy30sHour[i] + 16, this.mCircleTextureRegion_4_Hour, vbom);
-			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
-			mScene.attachChild(nPC30sHour[i]);
-		}
+		nPC30sHour[0] = new Sprite(npx30sHour[0] + 24, npy30sHour[0] + 16, this.mCircleTextureRegion_4_Hour, vbom);
+		body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC30sHour[0], BodyType.DynamicBody, FIXTURE_DEF);
+		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[0], body, true, false));
+		mScene.attachChild(nPC30sHour[0]);
 	}
 
 	private void add_5_Hour() {
 		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
-		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i], npy30sHour[i] + 42, this.mCircleTextureRegion_5_Hour, vbom);
-			body = createHexagonBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
-			mScene.attachChild(nPC30sHour[i]);
-		}
+		nPC30sHour[0] = new Sprite(npx30sHour[0], npy30sHour[0] + 42, this.mCircleTextureRegion_5_Hour, vbom);
+		body = createHexagonBody(this.mPhysicsWorld, nPC30sHour[0], BodyType.DynamicBody, FIXTURE_DEF);
+		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[0], body, true, false));
+		mScene.attachChild(nPC30sHour[0]);
 	}
 
 	void add_6_Hour() {
 		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
-		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i], npy30sHour[i], this.mCircleTextureRegion_6_Hour, vbom);
-			body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
-			mScene.attachChild(nPC30sHour[i]);
-		}
+		nPC30sHour[0] = new Sprite(npx30sHour[0], npy30sHour[0], this.mCircleTextureRegion_6_Hour, vbom);
+		body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[0], BodyType.DynamicBody, FIXTURE_DEF);
+		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[0], body, true, false));
+		mScene.attachChild(nPC30sHour[0]);
 	}
 
 	void add_7_Hour() {
 		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
-		for (int i = 0; i <= 0; i++)
-		{
-			nPC30sHour[i] = new Sprite(npx30sHour[i] + 4, npy30sHour[i], this.mCircleTextureRegion_7_Hour, vbom);
-			body = createHexagonBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			nPC30sHour[i].setIgnoreUpdate(true);
-			mScene.attachChild(nPC30sHour[i]);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
-		}
+		nPC30sHour[0] = new Sprite(npx30sHour[0] + 4, npy30sHour[0], this.mCircleTextureRegion_7_Hour, vbom);
+		body = createHexagonBody(this.mPhysicsWorld, nPC30sHour[0], BodyType.DynamicBody, FIXTURE_DEF);
+		nPC30sHour[0].setIgnoreUpdate(true);
+		mScene.attachChild(nPC30sHour[0]);
+		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[0], body, true, false));
 	}
 
 	void add_8_Hour() {
 		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
-		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i], npy30sHour[i], this.mCircleTextureRegion_8_Hour, vbom);
-			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			nPC30sHour[i].setIgnoreUpdate(true);
-			mScene.attachChild(nPC30sHour[i]);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
-		}
+		nPC30sHour[0] = new Sprite(npx30sHour[0], npy30sHour[0], this.mCircleTextureRegion_8_Hour, vbom);
+		body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC30sHour[0], BodyType.DynamicBody, FIXTURE_DEF);
+		nPC30sHour[0].setIgnoreUpdate(true);
+		mScene.attachChild(nPC30sHour[0]);
+		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[0], body, true, false));
 	}
 
 	void add_9_Hour() {
 		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
-		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i], npy30sHour[i], mCircleTextureRegion_9_Hour, vbom); 
-			// npx30sHour[i],
-			// npy30sHour[i] ,
-			// mCircle_9_min_TextureRegion
-			body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			// nPC30sHour[i].animate(1000);
-			nPC30sHour[i].setIgnoreUpdate(true);
-			mScene.attachChild(nPC30sHour[i]);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
-		}
+		nPC30sHour[0] = new Sprite(npx30sHour[0], npy30sHour[0], mCircleTextureRegion_9_Hour, vbom); 
+		body = PhysicsFactory.createBoxBody(this.mPhysicsWorld, nPC30sHour[0], BodyType.DynamicBody, FIXTURE_DEF);
+		nPC30sHour[0].setIgnoreUpdate(true);
+		mScene.attachChild(nPC30sHour[0]);
+		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[0], body, true, false));
 	}
 
 	private void add_10_Hour() {// add_4_Green_Dots_Hour();
 		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
-		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i] - 16, npy30sHour[i] - 28, this.mTriangleFaceTextureRegion_10_Hour, vbom);
-			body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
-			mScene.attachChild(nPC30sHour[i]);
-		}
+		nPC30sHour[0] = new Sprite(npx30sHour[0] - 16, npy30sHour[0] - 28, this.mTriangleFaceTextureRegion_10_Hour, vbom);
+		body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[0], BodyType.DynamicBody, FIXTURE_DEF);
+		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[0], body, true, false));
+		mScene.attachChild(nPC30sHour[0]);
 	}
 
 	private void add_11_Hour() {
 		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
-		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i] - 16, npy30sHour[i] - 28, this.mTriangleFaceTextureRegion_11_Hour, vbom);
-			body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
-			mScene.attachChild(nPC30sHour[i]);
-		}
+		nPC30sHour[0] = new Sprite(npx30sHour[0] - 16, npy30sHour[0] - 28, this.mTriangleFaceTextureRegion_11_Hour, vbom);
+		body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[0], BodyType.DynamicBody, FIXTURE_DEF);
+		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[0], body, true, false));
+		mScene.attachChild(nPC30sHour[0]);
 	}
 
 	private void add_12_Hour() {
 		VertexBufferObjectManager vbom = mEngine.getVertexBufferObjectManager();
-		for (int i = 0; i <= 0; i++) {
-			nPC30sHour[i] = new Sprite(npx30sHour[i] - 16, npy30sHour[i] - 28, this.mTriangleFaceTextureRegion_12_Hour, vbom);
-			body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[i], BodyType.DynamicBody, FIXTURE_DEF);
-			this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[i], body, true, false));
-			mScene.attachChild(nPC30sHour[i]);
-		}
+		nPC30sHour[0] = new Sprite(npx30sHour[0] - 16, npy30sHour[0] - 28, this.mTriangleFaceTextureRegion_12_Hour, vbom);
+		body = createTriangleBody(this.mPhysicsWorld, nPC30sHour[0], BodyType.DynamicBody, FIXTURE_DEF);
+		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(nPC30sHour[0], body, true, false));
+		mScene.attachChild(nPC30sHour[0]);
 	}
 
 	/**
