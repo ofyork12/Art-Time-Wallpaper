@@ -19,7 +19,6 @@ import org.andengine.entity.scene.IOnAreaTouchListener;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.ITouchArea;
 import org.andengine.entity.scene.Scene;
-import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.scene.menu.MenuScene;
 import org.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 import org.andengine.entity.scene.menu.item.IMenuItem;
@@ -51,8 +50,10 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 import android.content.res.AssetManager;
 import android.hardware.SensorManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.WindowManager;
 
 public class Counting extends BaseLiveWallpaperService
 		implements IAccelerationListener, IOnSceneTouchListener, IOnMenuItemClickListener, IOnAreaTouchListener {
@@ -60,8 +61,8 @@ public class Counting extends BaseLiveWallpaperService
 	// Constants extends BaseGameActivity
 	// ===========================================================
 
-	private static final int CAMERA_WIDTH = 360;
-	private static final int CAMERA_HEIGHT = 640;
+	private static int CAMERA_WIDTH = 360;
+	private static int CAMERA_HEIGHT = 640;
 
 	private static final FixtureDef FIXTURE_DEF = PhysicsFactory.createFixtureDef(.5f, 1f, 0f);
 	
@@ -115,6 +116,7 @@ public class Counting extends BaseLiveWallpaperService
 	private int min;
 	private int hour;
 	protected int mFaceChange;
+	private Camera mCamera;
 
 	// ===========================================================
 	// Methods for/from SuperClass/Interfaces
@@ -122,9 +124,16 @@ public class Counting extends BaseLiveWallpaperService
 
 	@Override
 	public EngineOptions onCreateEngineOptions() {
-		return new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, 
-				new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT),
-				new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT));
+		final DisplayMetrics displayMetrics = new DisplayMetrics();
+		WindowManager wm = (WindowManager)getSystemService(WINDOW_SERVICE);
+		wm.getDefaultDisplay().getMetrics(displayMetrics);
+		wm.getDefaultDisplay().getRotation();
+		CAMERA_WIDTH = displayMetrics.widthPixels;
+		CAMERA_HEIGHT = displayMetrics.heightPixels;
+		this.mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
+		  
+		return new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED,
+				new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
 	}
 
 	@Override
