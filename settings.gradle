@@ -1,0 +1,7 @@
+include ':andEngine'
+include ':andEngineAugmentedRealityExtension'
+include ':andEngineLiveWallpaperExtension'
+include ':andEngineMultiTouchExtension'
+include ':andEngineMultiplayerExtension'
+include ':andEnginePhysicsBox2DExtension'
+include ':art_time_wallpaper'

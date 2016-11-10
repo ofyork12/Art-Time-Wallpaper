@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   
+<string name="app_name">About Time Live Wallpaper: Motion </string>
+<string name="service_name">About Time: Motion</string>
+    <string name="service_description">Enjoy watching the time float by. Change motion by tilting handset. Tap screen to reorganize time.</string>
+
+</resources>

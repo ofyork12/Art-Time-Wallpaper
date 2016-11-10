@@ -1,0 +1,184 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Manifest Merging:
+-----------------
+Your project uses libraries that provide manifests, and your Eclipse
+project did not explicitly turn on manifest merging. In Android Gradle
+projects, manifests are always merged (meaning that contents from your
+libraries' manifests will be merged into the app manifest. If you had
+manually copied contents from library manifests into your app manifest
+you may need to remove these for the app to build correctly.
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+From AndEngine:
+* .gitignore
+* AUTHORS.md
+* LICENSE.md
+* README.md
+* build.xml
+* checkstyle.xml
+* ext/
+* ext/img/
+* ext/img/android.svg
+* ext/img/badge.png
+* ext/img/badge.svg
+* ext/img/badge_xlarge.png
+* ext/img/clapboard.png
+* ext/img/clapboard.svg
+* ext/img/favicon.png
+* ext/img/favicon.svg
+* ext/img/icon.svg
+* ext/img/logo.png
+* ext/img/logo.svg
+* ext/img/logo_icon.svg
+* ext/img/source.png
+* ext/img/source.svg
+* ext/img/splash.png
+* ext/img/splash.svg
+* ext/libs/
+* ext/libs/ant-contrib-1.0b3.jar
+* ext/scripts/
+* ext/scripts/build_texturepacks.sh
+* git-rank-contributors.rb
+* lib/
+* lib/org.apache.http.legacy.jar
+* proguard-project.txt
+From AndEngineAugmentedRealityExtension:
+* .gitignore
+* build.xml
+* proguard-project.txt
+From AndEngineLiveWallpaperExtension:
+* .gitignore
+* build.xml
+* proguard-project.txt
+From AndEngineMODPlayerExtension:
+* .gitignore
+* build.xml
+* proguard.cfg
+From AndEngineMultiTouchExtension:
+* .gitignore
+* .hgignore
+* build.xml
+* proguard-project.txt
+From AndEngineMultiplayerExtension:
+* .gitignore
+* build.xml
+* proguard-project.txt
+From AndEnginePhysicsBox2DExtension:
+* .gitignore
+* UPDATE_LIBGDX_SOURCES.bat
+* build.xml
+* proguard-project.txt
+From art_time_wallpaper:
+* .gitignore
+* README.md
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+In AndEngine:
+* AndroidManifest.xml => andEngine/src/main/AndroidManifest.xml
+* jni/ => andEngine/src/main/jni/
+* libs/armeabi-v7a/libandengine.so => andEngine/src/main/jniLibs/armeabi-v7a/libandengine.so
+* libs/armeabi/libandengine.so => andEngine/src/main/jniLibs/armeabi/libandengine.so
+* libs/mips/libandengine.so => andEngine/src/main/jniLibs/mips/libandengine.so
+* libs/x86/libandengine.so => andEngine/src/main/jniLibs/x86/libandengine.so
+* res/ => andEngine/src/main/res/
+* src/ => andEngine/src/main/java/
+In AndEngineAugmentedRealityExtension:
+* AndroidManifest.xml => andEngineAugmentedRealityExtension/src/main/AndroidManifest.xml
+* res/ => andEngineAugmentedRealityExtension/src/main/res/
+* src/ => andEngineAugmentedRealityExtension/src/main/java/
+In AndEngineLiveWallpaperExtension:
+* AndroidManifest.xml => andEngineLiveWallpaperExtension/src/main/AndroidManifest.xml
+* res/ => andEngineLiveWallpaperExtension/src/main/res/
+* src/ => andEngineLiveWallpaperExtension/src/main/java/
+In AndEngineMODPlayerExtension:
+* AndroidManifest.xml => andEngineMODPlayerExtension/src/main/AndroidManifest.xml
+* jni/ => andEngineMODPlayerExtension/src/main/jni/
+* res/ => andEngineMODPlayerExtension/src/main/res/
+* src/ => andEngineMODPlayerExtension/src/main/java/
+In AndEngineMultiTouchExtension:
+* /Users/brionemde/Documents/AndEngine/AndEngine/ => andEngineMultiTouchExtension/src/main/java/
+* /Users/brionemde/Documents/AndEngine/AndEngine/.classpath => andEngineMultiTouchExtension/src/main/resources/.classpath
+* /Users/brionemde/Documents/AndEngine/AndEngine/.gitignore => andEngineMultiTouchExtension/src/main/resources/.gitignore
+* /Users/brionemde/Documents/AndEngine/AndEngine/.project => andEngineMultiTouchExtension/src/main/resources/.project
+* /Users/brionemde/Documents/AndEngine/AndEngine/.settings/org.eclipse.jdt.core.prefs => andEngineMultiTouchExtension/src/main/resources/.settings/org.eclipse.jdt.core.prefs
+* /Users/brionemde/Documents/AndEngine/AndEngine/AUTHORS.md => andEngineMultiTouchExtension/src/main/resources/AUTHORS.md
+* /Users/brionemde/Documents/AndEngine/AndEngine/AndroidManifest.xml => andEngineMultiTouchExtension/src/main/resources/AndroidManifest.xml
+* /Users/brionemde/Documents/AndEngine/AndEngine/LICENSE.md => andEngineMultiTouchExtension/src/main/resources/LICENSE.md
+* /Users/brionemde/Documents/AndEngine/AndEngine/README.md => andEngineMultiTouchExtension/src/main/resources/README.md
+* /Users/brionemde/Documents/AndEngine/AndEngine/bin/AndroidManifest.xml => andEngineMultiTouchExtension/src/main/resources/bin/AndroidManifest.xml
+* /Users/brionemde/Documents/AndEngine/AndEngine/build.xml => andEngineMultiTouchExtension/src/main/resources/build.xml
+* /Users/brionemde/Documents/AndEngine/AndEngine/checkstyle.xml => andEngineMultiTouchExtension/src/main/resources/checkstyle.xml
+* /Users/brionemde/Documents/AndEngine/AndEngine/ext/img/android.svg => andEngineMultiTouchExtension/src/main/resources/ext/img/android.svg
+* /Users/brionemde/Documents/AndEngine/AndEngine/ext/img/badge.png => andEngineMultiTouchExtension/src/main/resources/ext/img/badge.png
+* /Users/brionemde/Documents/AndEngine/AndEngine/ext/img/badge.svg => andEngineMultiTouchExtension/src/main/resources/ext/img/badge.svg
+* /Users/brionemde/Documents/AndEngine/AndEngine/ext/img/badge_xlarge.png => andEngineMultiTouchExtension/src/main/resources/ext/img/badge_xlarge.png
+* /Users/brionemde/Documents/AndEngine/AndEngine/ext/img/clapboard.png => andEngineMultiTouchExtension/src/main/resources/ext/img/clapboard.png
+* /Users/brionemde/Documents/AndEngine/AndEngine/ext/img/clapboard.svg => andEngineMultiTouchExtension/src/main/resources/ext/img/clapboard.svg
+* /Users/brionemde/Documents/AndEngine/AndEngine/ext/img/favicon.png => andEngineMultiTouchExtension/src/main/resources/ext/img/favicon.png
+* /Users/brionemde/Documents/AndEngine/AndEngine/ext/img/favicon.svg => andEngineMultiTouchExtension/src/main/resources/ext/img/favicon.svg
+* /Users/brionemde/Documents/AndEngine/AndEngine/ext/img/icon.svg => andEngineMultiTouchExtension/src/main/resources/ext/img/icon.svg
+* /Users/brionemde/Documents/AndEngine/AndEngine/ext/img/logo.png => andEngineMultiTouchExtension/src/main/resources/ext/img/logo.png
+* /Users/brionemde/Documents/AndEngine/AndEngine/ext/img/logo.svg => andEngineMultiTouchExtension/src/main/resources/ext/img/logo.svg
+* /Users/brionemde/Documents/AndEngine/AndEngine/ext/img/logo_icon.svg => andEngineMultiTouchExtension/src/main/resources/ext/img/logo_icon.svg
+* /Users/brionemde/Documents/AndEngine/AndEngine/ext/img/source.png => andEngineMultiTouchExtension/src/main/resources/ext/img/source.png
+* /Users/brionemde/Documents/AndEngine/AndEngine/ext/img/source.svg => andEngineMultiTouchExtension/src/main/resources/ext/img/source.svg
+* /Users/brionemde/Documents/AndEngine/AndEngine/ext/img/splash.png => andEngineMultiTouchExtension/src/main/resources/ext/img/splash.png
+* /Users/brionemde/Documents/AndEngine/AndEngine/ext/img/splash.svg => andEngineMultiTouchExtension/src/main/resources/ext/img/splash.svg
+* /Users/brionemde/Documents/AndEngine/AndEngine/ext/scripts/build_texturepacks.sh => andEngineMultiTouchExtension/src/main/resources/ext/scripts/build_texturepacks.sh
+* /Users/brionemde/Documents/AndEngine/AndEngine/git-rank-contributors.rb => andEngineMultiTouchExtension/src/main/resources/git-rank-contributors.rb
+* /Users/brionemde/Documents/AndEngine/AndEngine/jni/Android.mk => andEngineMultiTouchExtension/src/main/resources/jni/Android.mk
+* /Users/brionemde/Documents/AndEngine/AndEngine/jni/Application.mk => andEngineMultiTouchExtension/src/main/resources/jni/Application.mk
+* /Users/brionemde/Documents/AndEngine/AndEngine/jni/build.sh => andEngineMultiTouchExtension/src/main/resources/jni/build.sh
+* /Users/brionemde/Documents/AndEngine/AndEngine/jni/src/BufferUtils.cpp => andEngineMultiTouchExtension/src/main/resources/jni/src/BufferUtils.cpp
+* /Users/brionemde/Documents/AndEngine/AndEngine/jni/src/BufferUtils.h => andEngineMultiTouchExtension/src/main/resources/jni/src/BufferUtils.h
+* /Users/brionemde/Documents/AndEngine/AndEngine/jni/src/GLES20Fix.c => andEngineMultiTouchExtension/src/main/resources/jni/src/GLES20Fix.c
+* /Users/brionemde/Documents/AndEngine/AndEngine/libs/armeabi-v7a/libandengine.so => andEngineMultiTouchExtension/src/main/resources/libs/armeabi-v7a/libandengine.so
+* /Users/brionemde/Documents/AndEngine/AndEngine/libs/armeabi/libandengine.so => andEngineMultiTouchExtension/src/main/resources/libs/armeabi/libandengine.so
+* /Users/brionemde/Documents/AndEngine/AndEngine/libs/mips/libandengine.so => andEngineMultiTouchExtension/src/main/resources/libs/mips/libandengine.so
+* /Users/brionemde/Documents/AndEngine/AndEngine/libs/x86/libandengine.so => andEngineMultiTouchExtension/src/main/resources/libs/x86/libandengine.so
+* /Users/brionemde/Documents/AndEngine/AndEngine/proguard-project.txt => andEngineMultiTouchExtension/src/main/resources/proguard-project.txt
+* /Users/brionemde/Documents/AndEngine/AndEngine/project.properties => andEngineMultiTouchExtension/src/main/resources/project.properties
+* /Users/brionemde/Documents/AndEngine/AndEngine/res/.gitignore => andEngineMultiTouchExtension/src/main/resources/res/.gitignore
+* AndroidManifest.xml => andEngineMultiTouchExtension/src/main/AndroidManifest.xml
+* res/ => andEngineMultiTouchExtension/src/main/res/
+* src/ => andEngineMultiTouchExtension/src/main/java/
+In AndEngineMultiplayerExtension:
+* AndroidManifest.xml => andEngineMultiplayerExtension/src/main/AndroidManifest.xml
+* res/ => andEngineMultiplayerExtension/src/main/res/
+* src/ => andEngineMultiplayerExtension/src/main/java/
+In AndEnginePhysicsBox2DExtension:
+* AndroidManifest.xml => andEnginePhysicsBox2DExtension/src/main/AndroidManifest.xml
+* jni/ => andEnginePhysicsBox2DExtension/src/main/jni/
+* res/ => andEnginePhysicsBox2DExtension/src/main/res/
+* src/ => andEnginePhysicsBox2DExtension/src/main/java/
+In art_time_wallpaper:
+* AndroidManifest.xml => art_time_wallpaper/src/main/AndroidManifest.xml
+* assets/ => art_time_wallpaper/src/main/assets/
+* res/ => art_time_wallpaper/src/main/res/
+* src/ => art_time_wallpaper/src/main/java/
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
