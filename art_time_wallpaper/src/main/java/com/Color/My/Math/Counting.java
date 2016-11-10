@@ -67,8 +67,7 @@ public class Counting extends BaseLiveWallpaperService
 
     private static final int TOP_BUFFER = 1;
     private static final int BOTTOM_BUFFER = 1;
-    private static final int BOX_Y_OFFSET = 72;
-    private static final float BOX_SIZE = 5; // % of camera height
+    private static final float BOX_SIZE_PERCENT = 5; // % of camera height
     private static final int WALL_WIDTH = 2;
 
 	private static final FixtureDef FIXTURE_DEF = PhysicsFactory.createFixtureDef(.5f, 1f, 0f);
@@ -293,16 +292,16 @@ public class Counting extends BaseLiveWallpaperService
 		final Rectangle roof = new Rectangle(CAMERA_WIDTH/2, CAMERA_HEIGHT - TOP_BUFFER, CAMERA_WIDTH, WALL_WIDTH, vbom);
 		final Rectangle left = new Rectangle(WALL_WIDTH, CAMERA_HEIGHT/2, WALL_WIDTH, CAMERA_HEIGHT, vbom);
 		final Rectangle right = new Rectangle(CAMERA_WIDTH - WALL_WIDTH, CAMERA_HEIGHT/2, WALL_WIDTH, CAMERA_HEIGHT, vbom);
-		final float boxSize = BOX_SIZE * CAMERA_HEIGHT/100f;
+		final float boxSize = BOX_SIZE_PERCENT/100f * CAMERA_HEIGHT;
 		final Rectangle square = new Rectangle(
-                CAMERA_WIDTH * 0.25f,
-                CAMERA_HEIGHT / 2 + BOX_Y_OFFSET,
+                CAMERA_WIDTH * 0.30f,
+                CAMERA_HEIGHT * 0.60f,
                 boxSize,
                 boxSize,
                 vbom);
 		final Rectangle square2 = new Rectangle(
-                CAMERA_WIDTH * 0.75f,
-                CAMERA_HEIGHT / 2 + BOX_Y_OFFSET,
+                CAMERA_WIDTH * 0.70f,
+                CAMERA_HEIGHT * 0.60f,
                 boxSize,
                 boxSize,
                 vbom);
