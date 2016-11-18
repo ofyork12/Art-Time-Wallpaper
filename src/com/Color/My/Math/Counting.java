@@ -2,11 +2,18 @@ package com.Color.My.Math;
 
 //Art of Time Quantitative Clock by Edward Hughes
 
-import static org.andengine.extension.physics.box2d.util.constants.PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+import android.content.res.AssetManager;
+import android.hardware.SensorManager;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.WindowManager;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.handler.timer.ITimerCallback;
@@ -39,21 +46,15 @@ import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TextureRegion;
+import org.andengine.opengl.util.GLState;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.util.adt.color.Color;
 
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
-import android.content.res.AssetManager;
-import android.hardware.SensorManager;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.WindowManager;
+import static org.andengine.extension.physics.box2d.util.constants.PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 
 public class Counting extends BaseLiveWallpaperService
 		implements IAccelerationListener, IOnSceneTouchListener, IOnMenuItemClickListener, IOnAreaTouchListener {
@@ -63,6 +64,11 @@ public class Counting extends BaseLiveWallpaperService
 
 	private static int CAMERA_WIDTH = 360;
 	private static int CAMERA_HEIGHT = 640;
+
+    private static final int TOP_BUFFER = 1;
+    private static final int BOTTOM_BUFFER = 1;
+    private static final float BOX_SIZE_PERCENT = 5; // % of camera height
+    private static final int WALL_WIDTH = 2;
 
 	private static final FixtureDef FIXTURE_DEF = PhysicsFactory.createFixtureDef(.5f, 1f, 0f);
 	
@@ -268,13 +274,7 @@ public class Counting extends BaseLiveWallpaperService
 		pOnCreateResourcesCallback.onCreateResourcesFinished();
 	}
 
-	private static final int TOP_BUFFER = 1;
-	private static final int BOTTOM_BUFFER = 1;
-	private static final int BOX_X_OFFSET = 59;
-	private static final int BOX_Y_OFFSET = 72;
-	private static final int BOX_SIZE = 20;
-	private static final int WALL_WIDTH = 2;
-	
+
 	@Override
 	public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) {
 
@@ -292,9 +292,19 @@ public class Counting extends BaseLiveWallpaperService
 		final Rectangle roof = new Rectangle(CAMERA_WIDTH/2, CAMERA_HEIGHT - TOP_BUFFER, CAMERA_WIDTH, WALL_WIDTH, vbom);
 		final Rectangle left = new Rectangle(WALL_WIDTH, CAMERA_HEIGHT/2, WALL_WIDTH, CAMERA_HEIGHT, vbom);
 		final Rectangle right = new Rectangle(CAMERA_WIDTH - WALL_WIDTH, CAMERA_HEIGHT/2, WALL_WIDTH, CAMERA_HEIGHT, vbom);
-		
-		final Rectangle square = new Rectangle(CAMERA_WIDTH / 2 - BOX_X_OFFSET, CAMERA_HEIGHT / 2 + BOX_Y_OFFSET, BOX_SIZE, BOX_SIZE, vbom);
-		final Rectangle square2 = new Rectangle(CAMERA_WIDTH / 2 + BOX_X_OFFSET, CAMERA_HEIGHT / 2 + BOX_Y_OFFSET, BOX_SIZE, BOX_SIZE, vbom);
+		final float boxSize = BOX_SIZE_PERCENT/100f * CAMERA_HEIGHT;
+		final Rectangle square = new Rectangle(
+                CAMERA_WIDTH * 0.30f,
+                CAMERA_HEIGHT * 0.60f,
+                boxSize,
+                boxSize,
+                vbom);
+		final Rectangle square2 = new Rectangle(
+                CAMERA_WIDTH * 0.70f,
+                CAMERA_HEIGHT * 0.60f,
+                boxSize,
+                boxSize,
+                vbom);
 
 		ground.setColor(Color.RED);
 		roof.setColor(Color.YELLOW);
@@ -333,7 +343,12 @@ public class Counting extends BaseLiveWallpaperService
 		pOnCreateSceneCallback.onCreateSceneFinished(mScene);
 	}
 
-	@Override
+    @Override
+    public void onSurfaceChanged(final GLState pGLState, final int pWidth, final int pHeight) {
+        mCamera.set(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
+    }
+
+    @Override
 	public boolean onSceneTouchEvent(final Scene pScene, final TouchEvent pSceneTouchEvent) {
 		if (this.mPhysicsWorld != null) {
 			if (pSceneTouchEvent.getAction() == MotionEvent.ACTION_DOWN) {
@@ -609,16 +624,16 @@ public class Counting extends BaseLiveWallpaperService
 		npx9s = new int[27];
 		npy9s = new int[27];
 
-		npx9s[0] = (int) (CAMERA_WIDTH / 2 - 18f);
-		npy9s[0] = (int) (BOTTOM_BUFFER + 32);
+		npx9s[0] = (int) (CAMERA_WIDTH * 0.25f);
+		npy9s[0] = (int) (CAMERA_HEIGHT / 2 - 32f);
 
 		npx9s[1] = (int) (npx9s[0] - 33f);
-		npy9s[1] = (int) (npy9s[0]);
+		npy9s[1] = (int) (npy9s[0] + 0f);
 
 		npx9s[2] = (int) (npx9s[0] + 33f);
-		npy9s[2] = (int) (npy9s[0]); // end of highest row of nine
+		npy9s[2] = (int) (npy9s[0] + 0f); // end of highest row of nine
 
-		npx9s[3] = (int) (npx9s[0]);
+		npx9s[3] = (int) (npx9s[0] + 0f);
 		npy9s[3] = (int) (npy9s[0] + 33f); // middle missing of eight
 
 		npx9s[4] = (int) (npx9s[0] - 33f);
@@ -627,7 +642,7 @@ public class Counting extends BaseLiveWallpaperService
 		npx9s[5] = (int) (npx9s[0] + 33f);// end of middle row of nine
 		npy9s[5] = (int) (npy9s[0] + 33f);
 
-		npx9s[6] = (int) (npx9s[0]);
+		npx9s[6] = (int) (npx9s[0] + 0f);
 		npy9s[6] = (int) (npy9s[0] + 66f);
 
 		npx9s[7] = (int) (npx9s[0] - 33f);
@@ -637,11 +652,11 @@ public class Counting extends BaseLiveWallpaperService
 		npy9s[8] = (int) (npy9s[0] + 66f); // end of lowest row of nine
 
 		// beginning of eight
-		npx9s[9] = (int) (npx9s[0]);
+		npx9s[9] = (int) (npx9s[0] + 0f);
 		npy9s[9] = (int) (npy9s[0] - 32f);
 
-		npx9s[10] = (int) (npx9s[0]);
-		npy9s[10] = (int) (npy9s[0]);
+		npx9s[10] = (int) (npx9s[0] + 0f);
+		npy9s[10] = (int) (npy9s[0] + 0f);
 
 		npx9s[11] = (int) (npx9s[0] + 16f);
 		npy9s[11] = (int) (npy9s[0] + 3f);
@@ -650,7 +665,7 @@ public class Counting extends BaseLiveWallpaperService
 		npy9s[12] = (int) (npy9s[0] - 16f);
 
 		npx9s[13] = (int) (npx9s[0] + 32f);
-		npy9s[13] = (int) (npy9s[0]);
+		npy9s[13] = (int) (npy9s[0] + 0f);
 
 		npx9s[14] = (int) (npx9s[0] + 35f);
 		npy9s[14] = (int) (npy9s[0] - 16f);
@@ -658,10 +673,10 @@ public class Counting extends BaseLiveWallpaperService
 		npx9s[15] = (int) (npx9s[0] + 32f);
 		npy9s[15] = (int) (npy9s[0] - 32f);
 
-		npx9s[16] = (int) (npx9s[0] + 16);
+		npx9s[16] = (int) (npx9s[0] + 16f);
 		npy9s[16] = (int) (npy9s[0] - 35f);
 
-		npx9s[17] = (int) (npx9s[0]);
+		npx9s[17] = (int) (npx9s[0] + 0f);
 		npy9s[17] = (int) (npy9s[0] - 32f);
 		// end of eight
 
@@ -674,14 +689,14 @@ public class Counting extends BaseLiveWallpaperService
 
 		// beginning of seven
 		// middle three
-		npx9s[20] = (int) (npx9s[0]);
+		npx9s[20] = (int) (npx9s[0] + 0f);
 		npy9s[20] = (int) (npy9s[0] - 16f);
 
 		npx9s[21] = (int) (npx9s[20] + 16f);
-		npy9s[21] = (int) (npy9s[20]);
+		npy9s[21] = (int) (npy9s[20] + 0f);
 
 		npx9s[22] = (int) (npx9s[20] + 32f);
-		npy9s[22] = (int) (npy9s[20]);
+		npy9s[22] = (int) (npy9s[20] + 0f);
 		// bottom two
 		npx9s[23] = (int) (npx9s[20] + 8f);
 		npy9s[23] = (int) (npy9s[20] + 16f); // three i = 0,1, 4
@@ -845,14 +860,14 @@ public class Counting extends BaseLiveWallpaperService
 		npx10s = new int[20];
 		npy10s = new int[20];
 
-		npx10s[0] = (int) (CAMERA_WIDTH / 2 + 58f);
-		npy10s[0] = (int) (BOTTOM_BUFFER + 32);// one i = 0
+		npx10s[0] = (int) (CAMERA_WIDTH * 0.75f);
+		npy10s[0] = (int) (CAMERA_HEIGHT / 2 - 32f);// one i = 0
 
 		npx10s[1] = (int) (npx10s[0] - 112f);
-		npy10s[1] = (int) (npy10s[0]); // two i = 0,1
+		npy10s[1] = (int) (npy10s[0] + 0f); // two i = 0,1
 
 		npx10s[2] = (int) (npx10s[0] + 112f);
-		npy10s[2] = (int) (npy10s[0]);
+		npy10s[2] = (int) (npy10s[0] + 0f);
 
 		npx10s[3] = (int) (npx10s[0] - 56f);// four i = 0,1,2,3
 		npy10s[3] = (int) (npy10s[0] - 93f);
@@ -860,16 +875,16 @@ public class Counting extends BaseLiveWallpaperService
 		npx10s[4] = (int) (npx10s[0] + 56f);
 		npy10s[4] = (int) (npy10s[0] - 93f);
 
-		npx10s[5] = (int) (npx10s[0]);// three i = 0,1,5
-		npy10s[5] = (int) (npy10s[0]);
+		npx10s[5] = (int) (npx10s[0] + 0f);// three i = 0,1,5
+		npy10s[5] = (int) (npy10s[0] + 0f);
 
 		npx10s[6] = (int) (npx10s[0] - 112f);// five i = 0,1,4,5,6
-		npy10s[6] = (int) (npy10s[0]);
+		npy10s[6] = (int) (npy10s[0] + 0f);
 
 		npx10s[7] = (int) (npx10s[0] + 83f);// six i = 0,1, 4,5,6,7
 		npy10s[7] = (int) (npy10s[0] - 140f);
 
-		npx10s[8] = (int) (npx10s[0]);// top left of different five i = 0,1,
+		npx10s[8] = (int) (npx10s[0] + 0f);// top left of different five i = 0,1,
 										// 5,7,8
 		npy10s[8] = (int) (npy10s[0] - 140f);
 
@@ -944,7 +959,7 @@ public class Counting extends BaseLiveWallpaperService
 		npy30sHour = new int[1];
 
 		npx30sHour[0] = (int) (CAMERA_WIDTH / 4f + 4);
-		npy30sHour[0] = (int) (CAMERA_HEIGHT - TOP_BUFFER - 128);
+		npy30sHour[0] = (int) (CAMERA_HEIGHT - TOP_BUFFER - 64f);
 	}
 
 	private void add_1_Hour() {
